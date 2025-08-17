@@ -28,7 +28,7 @@ export default function CasePage({ params }: { params: { slug: string } }) {
 		return (
 			<div className="mx-auto max-w-4xl px-6 py-20">
 				<h1 className="text-3xl font-semibold">Not found</h1>
-				<p className="mt-2 text-white/70">We couldn't find this case study.</p>
+				<p className="mt-2 text-white/70">We couldn&apos;t find this case study.</p>
 			</div>
 		);
 	}

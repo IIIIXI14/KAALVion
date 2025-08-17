@@ -5,7 +5,6 @@ import { Header } from "@/components/layout/Header";
 import { Features } from "@/components/sections/Features";
 import { Work } from "@/components/sections/Work";
 import { Contact } from "@/components/sections/Contact";
-import { Button } from "@/components/ui/Button";
 import { GradientGrid } from "@/components/backgrounds/GradientGrid";
 
 export default function Home() {

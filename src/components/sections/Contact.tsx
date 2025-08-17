@@ -37,7 +37,7 @@ export function Contact() {
 			});
 			if (!res.ok) throw new Error("Request failed");
 			setState("success");
-		} catch (e) {
+		} catch {
 			setError("Something went wrong. Please try again later.");
 			setState("error");
 		}
