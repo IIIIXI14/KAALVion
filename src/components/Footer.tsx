@@ -1,21 +1,39 @@
 import { motion } from "framer-motion";
-import { Linkedin, Twitter, Github, Mail } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Linkedin, Instagram, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // If we're not on the homepage, navigate to it first
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      // Wait for navigation, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // We're on the homepage, just scroll
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   const quickLinks = [
-    { label: "Home", id: "hero" },
-    { label: "Services", id: "services" },
-    { label: "Patents", id: "patents" },
-    { label: "Case Studies", id: "case-studies" },
-    { label: "Testimonials", id: "testimonials" },
-    { label: "Contact", id: "contact" },
+    { label: "Home", id: "hero", type: "section" },
+    { label: "Services", id: "services", type: "section" },
+    { label: "Patents", id: "patents", type: "section" },
+    { label: "WiFi Attendance", path: "/solutions/wifi-attendance", type: "page" },
+    { label: "Smart Farming", path: "/solutions/smart-farming", type: "page" },
+    { label: "Testimonials", id: "testimonials", type: "section" },
+    { label: "Contact", id: "contact", type: "section" },
   ];
 
   return (
@@ -36,22 +54,22 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/kaal-vion-445453381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-smooth hover:scale-110"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/kaalvion?igsh=dTI5Nnp3anlhcGUy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-smooth hover:scale-110"
+                aria-label="Instagram"
               >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-smooth hover:scale-110"
-              >
-                <Github className="w-5 h-5" />
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </motion.div>
@@ -65,13 +83,25 @@ const Footer = () => {
             <h4 className="font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-white/70 hover:text-white transition-smooth hover:translate-x-1 inline-block"
-                  >
-                    {link.label}
-                  </button>
+                <li key={link.label}>
+                  {link.type === "page" ? (
+                    <button
+                      onClick={() => {
+                        navigate(link.path);
+                        window.scrollTo(0, 0);
+                      }}
+                      className="text-white/70 hover:text-white transition-smooth hover:translate-x-1 inline-block text-left"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-white/70 hover:text-white transition-smooth hover:translate-x-1 inline-block text-left"
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -86,13 +116,15 @@ const Footer = () => {
             <h4 className="font-bold text-lg mb-4">Contact</h4>
             <ul className="space-y-3 text-white/70">
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <a href="mailto:hello@kaalvion.com" className="hover:text-white transition-smooth">
-                  hello@kaalvion.com
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <a href="mailto:kaalvion@gmail.com" className="hover:text-white transition-smooth">
+                  kaalvion@gmail.com
                 </a>
               </li>
-              <li>San Francisco, CA 94102</li>
-              <li>United States</li>
+              <li className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Mumbai, Maharashtra, India</span>
+              </li>
             </ul>
           </motion.div>
         </div>
