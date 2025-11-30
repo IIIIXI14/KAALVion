@@ -30,7 +30,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-secondary/30">
+    <section id="contact" className="py-32 bg-secondary/30 backdrop-blur-xl">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -39,7 +39,7 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Get in <span className="text-gradient">Touch</span>
+            Get in <span className="glow-gradient">Touch</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Ready to bring your project to life? Let's talk.

@@ -31,7 +31,7 @@ const ProcessSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="process" className="py-32">
+    <section id="process" className="py-32 bg-transparent">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -40,7 +40,7 @@ const ProcessSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Our <span className="text-gradient">Process</span>
+            The <span className="glow-gradient">Process</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A proven methodology to bring your vision to life

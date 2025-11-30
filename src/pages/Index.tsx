@@ -3,11 +3,12 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import PatentsSection from "@/components/PatentsSection";
-import CaseStudiesSection from "@/components/CaseStudiesSection";
+// import CaseStudiesSection from "@/components/CaseStudiesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ProcessSection from "@/components/ProcessSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import BackgroundScene from "@/components/BackgroundScene";
 
 const Index = () => {
   useEffect(() => {
@@ -20,18 +21,21 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <HeroSection />
-        <ServicesSection />
-        <PatentsSection />
-        <CaseStudiesSection />
-        <TestimonialsSection />
-        <ProcessSection />
-        <ContactSection />
-      </main>
-      <Footer />
+    <div className="min-h-screen relative bg-transparent">
+      <BackgroundScene />
+      <div className="relative z-10">
+        <Navbar />
+        <main className="space-y-28 lg:space-y-32 pt-10">
+          <HeroSection />
+          <ServicesSection />
+          <PatentsSection />
+          {/* <CaseStudiesSection /> */}
+          <TestimonialsSection />
+          <ProcessSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

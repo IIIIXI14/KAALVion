@@ -21,20 +21,16 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-lg shadow-soft"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+    <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className="fixed top-4 left-0 right-0 z-50 pointer-events-none">
+      <div className="container mx-auto px-6">
+        <div
+          className={`flex items-center justify-between gap-6 rounded-[999px] border border-white/10 bg-[rgba(10,14,19,0.72)] px-6 py-3 md:px-10 md:py-4 shadow-[0_25px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition duration-300 ${
+            scrolled ? "scale-[1.015]" : "scale-100"
+          } pointer-events-auto`}
+        >
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-black text-gradient cursor-pointer"
+            className="font-semibold tracking-[0.6em] text-xs text-white uppercase cursor-pointer"
             onClick={() => scrollToSection("hero")}
           >
             KAALVION
@@ -46,10 +42,10 @@ const Navbar = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase().replace(" ", "-"))}
-                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-smooth relative group"
+                  className="relative text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)]"
                 >
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-[var(--primary)] transition-transform duration-300 group-hover:scale-x-100" />
                 </button>
               )
             )}
@@ -57,7 +53,7 @@ const Navbar = () => {
 
           <Button
             onClick={() => scrollToSection("contact")}
-            className="gradient-primary text-white font-semibold rounded-xl px-6 hover:scale-105 transition-smooth shadow-medium"
+            className="rounded-full border border-[rgba(0,255,136,0.5)] bg-[var(--primary)] px-6 py-5 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_30px_rgba(0,255,136,0.35)] transition duration-300 hover:-translate-y-1 hover:brightness-110"
           >
             Request Demo
           </Button>

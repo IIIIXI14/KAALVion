@@ -47,7 +47,7 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section id="testimonials" className="py-32 bg-secondary/30">
+    <section id="testimonials" className="py-32 bg-secondary/30 backdrop-blur-xl">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Client <span className="text-gradient">Testimonials</span>
+            Client <span className="glow-gradient">Testimonials</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Hear what our clients say about working with us
