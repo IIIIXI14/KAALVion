@@ -1,9 +1,27 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CheckCircle, ChevronLeft, ChevronRight, ActivitySquare, Droplets, Thermometer, Leaf } from "lucide-react";
 
 const FarmingAssistantDetail = () => {
+  const navigate = useNavigate();
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const scrollToContact = () => {
+    navigate("/#contact");
+    // Small delay to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const element = document.getElementById("contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
   const farmingGallery = [
     {
       title: "Field Command Console",
@@ -475,12 +493,12 @@ const FarmingAssistantDetail = () => {
                 >
                   Back to Patents
                 </a>
-                <a
-                  href="#contact"
+                <button
+                  onClick={scrollToContact}
                   className="rounded-full border border-white/30 text-white font-semibold px-8 py-3 hover:bg-white/10 transition"
                 >
                   Book a Farm Trial
-                </a>
+                </button>
               </div>
             </div>
           </div>

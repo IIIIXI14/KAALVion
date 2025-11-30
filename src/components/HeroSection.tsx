@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Cpu, RadioTower, ShieldCheck } from "lucide-react";
 
 const stats = [
-  { label: "Granted patents", value: "04", detail: "Edge + IoT + UX" },
+  { label: "Granted patents", value: "01", detail: "Edge + IoT + UX" },
   { label: "Deployment window", value: "48h", detail: "From install to live" },
   { label: "Edge uptime", value: "99.9%", detail: "WiFi → Cloud telemetry" },
 ];

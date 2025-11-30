@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,9 +17,22 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // If we're not on the homepage, navigate to it first
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      // Wait for navigation, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // We're on the homepage, just scroll
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -37,18 +53,22 @@ const Navbar = () => {
           </motion.div>
 
           <div className="hidden md:flex items-center gap-8">
-            {["Home", "Services", "Patents", "Case Studies", "Testimonials", "Contact"].map(
-              (item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase().replace(" ", "-"))}
-                  className="relative text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)]"
-                >
-                  {item}
-                  <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-[var(--primary)] transition-transform duration-300 group-hover:scale-x-100" />
-                </button>
-              )
-            )}
+            {[
+              { label: "Home", id: "hero" },
+              { label: "Services", id: "services" },
+              { label: "Patents", id: "patents" },
+              { label: "Testimonials", id: "testimonials" },
+              { label: "Contact", id: "contact" },
+            ].map((item) => (
+              <button
+                key={item.label}
+                onClick={() => scrollToSection(item.id)}
+                className="relative text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)]"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-[var(--primary)] transition-transform duration-300 group-hover:scale-x-100" />
+              </button>
+            ))}
           </div>
 
           <Button

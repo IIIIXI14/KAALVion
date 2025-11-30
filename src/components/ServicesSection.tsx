@@ -1,6 +1,9 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Globe, Smartphone, Radio, BadgeCheck, CloudCog, CircuitBoard } from "lucide-react";
+import { useRef, useState } from "react";
+import { Globe, Smartphone, Radio, BadgeCheck, CloudCog, CircuitBoard, GraduationCap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ServiceModal from "./ServiceModal";
+import type { ServiceData } from "@/types/project";
 
 const services = [
   {
@@ -41,9 +44,25 @@ const services = [
   },
 ];
 
+const studentService: ServiceData = {
+  title: "Student Projects",
+  description: "Quick turnaround, student-friendly pricing, and portfolio-focused development for learning projects.",
+  stack: ["Student Discount", "Quick Turnaround", "Portfolio Focus", "Learning Support"],
+  icon: GraduationCap,
+};
+
 const ServicesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [selectedService, setSelectedService] = useState<ServiceData | null>(null);
+  const [isStudent, setIsStudent] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleServiceClick = (service: ServiceData, student: boolean = false) => {
+    setSelectedService(service);
+    setIsStudent(student);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="services" className="relative overflow-hidden py-32">
@@ -75,7 +94,8 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[rgba(10,14,19,0.85)] p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[rgba(0,255,136,0.35)]"
+              className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[rgba(10,14,19,0.85)] p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[rgba(0,255,136,0.35)] hover:shadow-[0_0_40px_rgba(0,255,136,0.3)] cursor-pointer"
+              onClick={() => handleServiceClick(service, false)}
             >
               <div className="absolute inset-0 opacity-25">
                 <div className="absolute inset-0 animate-gradient-mesh" />
@@ -97,10 +117,71 @@ const ServicesSection = () => {
                     </div>
                   ))}
                 </div>
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleServiceClick(service, false);
+                  }}
+                  className="w-full mt-6 bg-[var(--primary)]/20 border border-[var(--primary)]/30 text-[var(--primary)] hover:bg-[var(--primary)]/30 hover:scale-105 transition-all rounded-xl"
+                >
+                  Configure Project
+                </Button>
               </div>
             </motion.div>
           ))}
+
+          {/* Student Projects Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: services.length * 0.08 }}
+            className="relative overflow-hidden rounded-[28px] border-2 border-[var(--primary)]/40 bg-[rgba(10,14,19,0.85)] p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[var(--primary)]/60 hover:shadow-[0_0_40px_rgba(0,255,136,0.3)] cursor-pointer"
+            onClick={() => handleServiceClick(studentService, true)}
+          >
+            <div className="absolute inset-0 opacity-25">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,136,0.15),transparent_70%)]" />
+            </div>
+            <div className="relative space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--primary)]/30 bg-[var(--primary)]/10 shadow-[0_10px_35px_rgba(0,255,136,0.3)]">
+                  <studentService.icon className="h-6 w-6 text-[var(--primary)]" />
+                </div>
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-[0.4em] text-[var(--primary)]">Student Section</p>
+                  <span className="inline-block mt-1 px-2 py-0.5 text-xs font-mono uppercase tracking-[0.2em] bg-[var(--primary)]/20 text-[var(--primary)] rounded-full border border-[var(--primary)]/30">
+                    Quick Projects
+                  </span>
+                </div>
+              </div>
+              <h3 className="text-2xl font-semibold text-white">{studentService.title}</h3>
+              <p className="text-sm text-white/70">{studentService.description}</p>
+              <div className="mt-6 space-y-2 text-xs font-mono text-white/60">
+                {studentService.stack.map((item) => (
+                  <div key={item} className="flex items-center justify-between border-b border-white/5 py-1">
+                    <span>{item}</span>
+                    <span className="h-1 w-8 rounded-full bg-[var(--primary)] opacity-60" />
+                  </div>
+                ))}
+              </div>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleServiceClick(studentService, true);
+                }}
+                className="w-full mt-6 bg-[var(--primary)] text-[#f2f3f5] hover:bg-[var(--primary)]/90 hover:scale-105 transition-all rounded-xl font-semibold shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+              >
+                Apply for Student Project
+              </Button>
+            </div>
+          </motion.div>
         </div>
+
+        <ServiceModal
+          open={isModalOpen}
+          onOpenChange={setIsModalOpen}
+          service={selectedService}
+          isStudent={isStudent}
+        />
       </div>
     </section>
   );
