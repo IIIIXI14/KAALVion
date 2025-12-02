@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Cpu, RadioTower, ShieldCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const stats = [
   { label: "Granted patents", value: "01", detail: "Edge + IoT + UX" },
@@ -13,11 +14,13 @@ const showcasePanels = [
     title: "WiFi Attendance Platform",
     patent: "Patent #WIFI-2024-001",
     description: "MAC + biometric dual-auth, zero hardware installs.",
+    link: "/solutions/wifi-attendance",
   },
   {
     title: "Smart Farming Assistant",
     patent: "Patent #AGRI-2024-002",
     description: "ESP32 irrigation mesh + weather-fed automation.",
+    link: "/solutions/smart-farming",
   },
 ];
 
@@ -28,6 +31,7 @@ const badges = [
 ];
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -35,12 +39,12 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-transparent">
-      <div className="absolute inset-0 gradient-hero" />
-      <div className="absolute inset-0 grid-overlay" />
-      <div className="absolute inset-0 hero-particles mix-blend-screen opacity-60" />
-      <div className="absolute -left-10 top-10 w-[420px] h-[420px] hero-orb opacity-60" />
-      <div className="absolute right-10 bottom-10 w-[360px] h-[360px] animate-gradient-mesh opacity-40" />
-      <div className="absolute inset-0 noise-overlay pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 gradient-hero" />
+      <div className="pointer-events-none absolute inset-0 grid-overlay" />
+      <div className="pointer-events-none absolute inset-0 hero-particles mix-blend-screen opacity-60" />
+      <div className="pointer-events-none absolute -left-10 top-10 w-[420px] h-[420px] hero-orb opacity-60" />
+      <div className="pointer-events-none absolute right-10 bottom-10 w-[360px] h-[360px] animate-gradient-mesh opacity-40" />
+      <div className="pointer-events-none absolute inset-0 noise-overlay" />
 
       <div className="container relative z-10 mx-auto px-6 py-32">
         <div className="grid items-start gap-16 lg:grid-cols-[1.05fr,0.95fr]">
@@ -136,22 +140,31 @@ const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <div className="absolute -inset-6 rounded-[36px] border border-white/5 bg-gradient-to-br from-white/5 to-transparent opacity-70" />
-            <div className="absolute inset-0 blur-[120px] bg-[radial-gradient(circle_at_30%_20%,rgba(0,255,136,0.35),transparent_55%)]" />
+            <div className="pointer-events-none absolute -inset-6 rounded-[36px] border border-white/5 bg-gradient-to-br from-white/5 to-transparent opacity-70" />
+            <div className="pointer-events-none absolute inset-0 blur-[120px] bg-[radial-gradient(circle_at_30%_20%,rgba(0,255,136,0.35),transparent_55%)]" />
             <div className="relative space-y-5 rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-2xl">
               <p className="text-xs uppercase tracking-[0.5em] text-white/60">Systems in rotation</p>
               <div className="space-y-5">
                 {showcasePanels.map((panel) => (
                   <div
                     key={panel.title}
-                    className="rounded-2xl border border-white/10 bg-[#0f141c]/70 p-5 transition hover:-translate-y-1 hover:border-[rgba(0,255,136,0.45)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => navigate(panel.link)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        navigate(panel.link);
+                      }
+                    }}
+                    className="rounded-2xl border border-white/10 bg-[#0f141c]/70 p-5 transition hover:-translate-y-1 hover:border-[rgba(0,255,136,0.45)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.6)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f141c]"
               >
                     <p className="text-xs font-mono uppercase tracking-[0.4em] text-[var(--primary)]">{panel.patent}</p>
                     <h3 className="mt-2 text-xl font-semibold text-white">{panel.title}</h3>
                     <p className="mt-1 text-sm text-white/65">{panel.description}</p>
                     <div className="mt-4 flex items-center gap-2 text-xs font-mono text-white/55">
                       <span className="h-1 w-8 rounded-full bg-[var(--primary)]" />
-                      → See architecture
+                      <span className="flex items-center gap-2 text-[var(--primary)]">→ See architecture</span>
                     </div>
                   </div>
                 ))}

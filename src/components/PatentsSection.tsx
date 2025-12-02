@@ -48,10 +48,10 @@ const PatentsSection = () => {
 
   return (
     <section id="patents" className="relative overflow-hidden py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,255,136,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(0,229,255,0.12),transparent_55%)]" />
-      <div className="absolute inset-0 grid-overlay opacity-40" />
-      <div className="absolute inset-0 noise-overlay opacity-30" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,255,136,0.15),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(0,229,255,0.12),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 grid-overlay opacity-40" />
+      <div className="pointer-events-none absolute inset-0 noise-overlay opacity-30" />
 
       <div className="container relative z-10 mx-auto px-6" ref={ref}>
         <motion.div
@@ -79,7 +79,7 @@ const PatentsSection = () => {
               transition={{ duration: 0.9, delay: index * 0.2 }}
               className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[rgba(10,14,19,0.82)] p-10 shadow-[0_30px_90px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
             >
-              <div className="absolute inset-0 opacity-40">
+              <div className="pointer-events-none absolute inset-0 opacity-40">
                 <div className="absolute inset-0 animate-gradient-mesh" />
               </div>
               <div className="relative grid gap-12 lg:grid-cols-[1.1fr,0.9fr]">
@@ -111,13 +111,13 @@ const PatentsSection = () => {
                 </div>
 
                 <div className="relative">
-                  <div className="absolute -inset-6 rounded-[28px] border border-white/5 opacity-60" />
+                  <div className="pointer-events-none absolute -inset-6 rounded-[28px] border border-white/5 opacity-60" />
                   <div className="relative rounded-[28px] border border-white/8 bg-black/40 p-6 backdrop-blur-xl">
                     <div className="relative overflow-hidden rounded-[24px] border border-white/10">
                       <img src={patent.image} alt={patent.title} className="h-full w-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4 rounded-full border border-white/20 bg-black/50 px-4 py-1 text-xs font-mono uppercase tracking-[0.4em] text-white/70">
-                        KAALVION
+                        {index === 0 ? "KAALVION" : "FARM-AGRO-TECH"}
                       </div>
                     </div>
                     <div className="mt-6 space-y-3 font-mono text-xs text-white/65">
