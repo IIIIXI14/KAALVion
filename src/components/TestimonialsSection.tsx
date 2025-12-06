@@ -47,23 +47,23 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section id="testimonials" className="py-32 bg-secondary/30 backdrop-blur-xl">
-      <div className="container mx-auto px-6" ref={ref}>
+    <section id="testimonials" className="py-20 sm:py-24 md:py-32 bg-secondary/30 backdrop-blur-xl">
+      <div className="container mx-auto px-4 sm:px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
             Client <span className="glow-gradient">Testimonials</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             Hear what our clients say about working with us
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
@@ -71,27 +71,27 @@ const TestimonialsSection = () => {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="glass rounded-2xl p-8 shadow-soft hover:shadow-medium transition-smooth"
+              className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-soft hover:shadow-medium transition-smooth"
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-3 sm:mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                  <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-accent text-accent" />
                 ))}
               </div>
 
-              <p className="text-muted-foreground mb-6 leading-relaxed italic">
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed italic">
                 "{testimonial.content}"
               </p>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0"
                 />
                 <div>
-                  <div className="font-bold">{testimonial.name}</div>
-                  <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                  <div className="text-sm sm:text-base font-bold">{testimonial.name}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</div>
                 </div>
               </div>
             </motion.div>

@@ -10,12 +10,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-[rgba(0,255,136,0.45)] bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[0_12px_30px_rgba(0,255,136,0.3)] hover:-translate-y-1 hover:brightness-110",
+          "border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[0_12px_35px_rgba(217,61,58,0.5)] hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_16px_45px_rgba(232,90,87,0.6)]",
         destructive: "border border-destructive bg-destructive text-destructive-foreground hover:-translate-y-1",
         outline:
-          "border border-white/25 bg-transparent text-white hover:border-[rgba(0,255,136,0.6)] hover:text-white hover:-translate-y-1",
+          "border border-white/25 bg-transparent text-white hover:border-[rgba(217,61,58,0.7)] hover:text-white hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(217,61,58,0.4)]",
         secondary:
-          "border border-white/10 bg-white/10 text-white hover:border-[rgba(0,255,136,0.3)] hover:-translate-y-1",
+          "border border-white/10 bg-white/10 text-white hover:border-[rgba(217,61,58,0.5)] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(217,61,58,0.3)]",
         ghost: "text-white/70 hover:text-white hover:-translate-y-1",
         link: "text-primary underline-offset-4 hover:underline tracking-normal",
       },

@@ -97,9 +97,12 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
       if (result.success) {
         toast({
           title: "Project Submitted!",
-          description: "We'll review your project and get back to you within 24 hours.",
+          description: "Redirecting to WhatsApp... Your project details have been saved.",
         });
-        onSuccess();
+        // Small delay to show toast before closing modal
+        setTimeout(() => {
+          onSuccess();
+        }, 1500);
       } else {
         toast({
           title: "Submission Failed",
@@ -354,7 +357,7 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="flex-1 !bg-[var(--primary)] !text-[var(--primary-foreground)] font-semibold !rounded-xl px-8 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] transition-all border-0"
+          className="flex-1 !bg-[var(--primary)] !text-[var(--primary-foreground)] font-semibold !rounded-xl px-8 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,61,58,0.6)] transition-all border-0"
         >
           {isSubmitting ? (
             <>

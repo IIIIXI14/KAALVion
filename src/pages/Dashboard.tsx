@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div className="relative min-h-screen bg-[#0A0E13] text-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f1630] via-[#111933] to-[#150c1f]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,255,136,0.15),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(217,61,58,0.28),transparent_55%)]" />
       <Navbar />
 
       <main className="relative z-10 pt-32 pb-24">
@@ -21,7 +21,7 @@ const Dashboard = () => {
             className="max-w-4xl mx-auto"
           >
             <div className="rounded-[28px] border border-white/10 bg-[rgba(10,14,19,0.95)] backdrop-blur-2xl p-8 shadow-[0_25px_70px_rgba(0,0,0,0.65)]">
-              <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[var(--primary)] to-[#00E5FF] bg-clip-text text-transparent">
+              <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[var(--primary)] to-[#666666] bg-clip-text text-transparent">
                 Dashboard
               </h1>
               <p className="text-white/70 mb-6">Welcome back, {user?.firstName || user?.emailAddresses[0]?.emailAddress}!</p>

@@ -10,55 +10,55 @@ const AuthButtons = ({ scrollToSection }: AuthButtonsProps) => {
 
   if (!hasClerk) {
     return (
-      <div className="flex items-center gap-3">
-        <Button
-          onClick={() => scrollToSection("contact")}
-          className="rounded-full border border-[rgba(0,255,136,0.5)] bg-[var(--primary)] px-6 py-5 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_30px_rgba(0,255,136,0.35)] transition duration-300 hover:-translate-y-1 hover:brightness-110"
-        >
-          Request Demo
-        </Button>
+      <div className="flex items-center gap-2 sm:gap-3">
+      <Button
+        onClick={() => scrollToSection("contact")}
+        className="rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(232,90,87,0.6)]"
+      >
+        Request Demo
+      </Button>
       </div>
     );
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
       <SignedOut>
-        <div className="flex items-center gap-3">
-          <SignInButton mode="modal">
-            <Button
-              className="rounded-full border border-white/30 bg-transparent px-6 py-5 text-white font-semibold tracking-wide hover:bg-white/10 transition duration-300 hover:-translate-y-1"
-            >
-              Sign In
-            </Button>
-          </SignInButton>
-          <SignUpButton mode="modal">
-            <Button
-              className="rounded-full border border-[rgba(0,255,136,0.5)] bg-[var(--primary)] px-6 py-5 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_30px_rgba(0,255,136,0.35)] transition duration-300 hover:-translate-y-1 hover:brightness-110"
-            >
-              Sign Up
-            </Button>
-          </SignUpButton>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+        <SignInButton mode="modal">
+          <Button
+            className="w-full sm:w-auto rounded-full border border-white/30 bg-transparent px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-white font-semibold tracking-wide hover:bg-white/10 transition duration-300 hover:-translate-y-1 min-h-[44px]"
+          >
+            Sign In
+          </Button>
+        </SignInButton>
+        <SignUpButton mode="modal">
+          <Button
+            className="w-full sm:w-auto rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(232,90,87,0.6)] min-h-[44px]"
+          >
+            Sign Up
+          </Button>
+        </SignUpButton>
         </div>
       </SignedOut>
       <SignedIn>
-        <div className="flex items-center gap-3">
-          <Button
-            onClick={() => scrollToSection("contact")}
-            className="rounded-full border border-[rgba(0,255,136,0.5)] bg-[var(--primary)] px-6 py-5 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_30px_rgba(0,255,136,0.35)] transition duration-300 hover:-translate-y-1 hover:brightness-110"
-          >
-            Request Demo
-          </Button>
-          <div className="flex items-center justify-center">
-            <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: "w-10 h-10",
-                  userButtonPopoverCard: "bg-[#0A0E13] border border-white/10",
-                  userButtonPopoverActionButton: "text-white hover:bg-white/10",
-                },
-              }}
-            />
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+        <Button
+          onClick={() => scrollToSection("contact")}
+          className="w-full sm:w-auto rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(232,90,87,0.6)] min-h-[44px]"
+        >
+          Request Demo
+        </Button>
+        <div className="flex items-center justify-center">
+          <UserButton
+            appearance={{
+              elements: {
+                avatarBox: "w-10 h-10",
+                userButtonPopoverCard: "bg-[#0A0E13] border border-white/10",
+                userButtonPopoverActionButton: "text-white hover:bg-white/10",
+              },
+            }}
+          />
           </div>
         </div>
       </SignedIn>

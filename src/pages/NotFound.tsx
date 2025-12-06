@@ -41,7 +41,7 @@ const NotFound = () => {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Button
               size="lg"
-              className="rounded-full border border-[rgba(0,255,136,0.5)] bg-[var(--primary)] px-8 py-6 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_16px_45px_rgba(0,255,136,0.35)] hover:-translate-y-1 hover:brightness-110 transition"
+              className="rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-8 py-6 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_16px_50px_rgba(217,61,58,0.5)] hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_20px_60px_rgba(232,90,87,0.6)] transition"
               onClick={() => navigate("/")}
             >
               Return to Dashboard

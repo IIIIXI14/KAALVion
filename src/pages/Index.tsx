@@ -25,7 +25,7 @@ const Index = () => {
       <BackgroundScene />
       <div className="relative z-10">
         <Navbar />
-        <main className="space-y-28 lg:space-y-32 pt-10">
+        <main className="space-y-16 sm:space-y-20 md:space-y-28 lg:space-y-32 pt-10">
           <HeroSection />
           <ServicesSection />
           <PatentsSection />

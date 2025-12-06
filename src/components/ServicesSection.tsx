@@ -65,50 +65,50 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="relative overflow-hidden py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(0,255,136,0.18),transparent_40%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(0,229,255,0.18),transparent_50%)]" />
+    <section id="services" className="relative overflow-hidden py-20 sm:py-24 md:py-32">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(217,61,58,0.3),transparent_40%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(102,102,102,0.18),transparent_50%)]" />
       <div className="absolute inset-0 grid-overlay opacity-30" />
       <div className="absolute inset-0 noise-overlay opacity-25" />
 
-      <div className="container relative z-10 mx-auto px-6" ref={ref}>
+      <div className="container relative z-10 mx-auto px-4 sm:px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mx-auto mb-16 max-w-4xl text-center"
+          className="mx-auto mb-12 sm:mb-16 max-w-4xl text-center"
         >
-          <p className="mb-4 text-xs font-mono uppercase tracking-[0.55em] text-white/60">KAALVION STACK</p>
-          <h2 className="text-4xl font-semibold text-white sm:text-5xl">
+          <p className="mb-3 sm:mb-4 text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.45em] sm:tracking-[0.55em] text-white/60">KAALVION STACK</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white">
             Full-spectrum engineering, orchestrated like an <span className="glow-gradient">industrial console</span>.
           </h2>
-          <p className="mt-5 text-lg text-white/70">
+          <p className="mt-4 sm:mt-5 text-base sm:text-lg text-white/70">
             Every capability plugs into our telemetry layer—IoT, cloud, and interface teams operating as a single system.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[rgba(10,14,19,0.85)] p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[rgba(0,255,136,0.35)] hover:shadow-[0_0_40px_rgba(0,255,136,0.3)] cursor-pointer"
+              className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-white/12 bg-[rgba(10,14,19,0.85)] p-4 sm:p-6 md:p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[rgba(217,61,58,0.5)] hover:shadow-[0_0_50px_rgba(217,61,58,0.45)] cursor-pointer"
               onClick={() => handleServiceClick(service, false)}
             >
               <div className="absolute inset-0 opacity-25">
                 <div className="absolute inset-0 animate-gradient-mesh" />
               </div>
-              <div className="relative space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_35px_rgba(0,0,0,0.6)]">
-                    <service.icon className="h-6 w-6 text-[var(--primary)]" />
+              <div className="relative space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_35px_rgba(0,0,0,0.6)]">
+                    <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-[var(--primary)]" />
                   </div>
-                  <p className="text-xs font-mono uppercase tracking-[0.4em] text-white/60">Capability #{index + 1}</p>
+                  <p className="text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em] text-white/60">Capability #{index + 1}</p>
                 </div>
-                <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
-                <p className="text-sm text-white/70">{service.description}</p>
+                <h3 className="text-xl sm:text-2xl font-semibold text-white">{service.title}</h3>
+                <p className="text-xs sm:text-sm text-white/70">{service.description}</p>
                 <div className="mt-6 space-y-2 text-xs font-mono text-white/60">
                   {service.stack.map((item) => (
                     <div key={item} className="flex items-center justify-between border-b border-white/5 py-1">
@@ -135,26 +135,26 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: services.length * 0.08 }}
-            className="relative overflow-hidden rounded-[28px] border-2 border-[var(--primary)]/40 bg-[rgba(10,14,19,0.85)] p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[var(--primary)]/60 hover:shadow-[0_0_40px_rgba(0,255,136,0.3)] cursor-pointer"
+            className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border-2 border-[var(--primary)]/40 bg-[rgba(10,14,19,0.85)] p-4 sm:p-6 md:p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[var(--primary)]/70 hover:shadow-[0_0_50px_rgba(217,61,58,0.5)] cursor-pointer"
             onClick={() => handleServiceClick(studentService, true)}
           >
             <div className="absolute inset-0 opacity-25">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,136,0.15),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(217,61,58,0.25),transparent_70%)]" />
             </div>
-            <div className="relative space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--primary)]/30 bg-[var(--primary)]/10 shadow-[0_10px_35px_rgba(0,255,136,0.3)]">
-                  <studentService.icon className="h-6 w-6 text-[var(--primary)]" />
+            <div className="relative space-y-3 sm:space-y-4">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-[var(--primary)]/30 bg-[var(--primary)]/10 shadow-[0_10px_40px_rgba(217,61,58,0.5)]">
+                  <studentService.icon className="h-5 w-5 sm:h-6 sm:w-6 text-[var(--primary)]" />
                 </div>
                 <div>
-                  <p className="text-xs font-mono uppercase tracking-[0.4em] text-[var(--primary)]">Student Section</p>
-                  <span className="inline-block mt-1 px-2 py-0.5 text-xs font-mono uppercase tracking-[0.2em] bg-[var(--primary)]/20 text-[var(--primary)] rounded-full border border-[var(--primary)]/30">
+                  <p className="text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[var(--primary)]">Student Section</p>
+                  <span className="inline-block mt-1 px-2 py-0.5 text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.15em] sm:tracking-[0.2em] bg-[var(--primary)]/20 text-[var(--primary)] rounded-full border border-[var(--primary)]/30">
                     Quick Projects
                   </span>
                 </div>
               </div>
-              <h3 className="text-2xl font-semibold text-white">{studentService.title}</h3>
-              <p className="text-sm text-white/70">{studentService.description}</p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-white">{studentService.title}</h3>
+              <p className="text-xs sm:text-sm text-white/70">{studentService.description}</p>
               <div className="mt-6 space-y-2 text-xs font-mono text-white/60">
                 {studentService.stack.map((item) => (
                   <div key={item} className="flex items-center justify-between border-b border-white/5 py-1">
@@ -168,7 +168,7 @@ const ServicesSection = () => {
                   e.stopPropagation();
                   handleServiceClick(studentService, true);
                 }}
-                className="w-full mt-6 bg-[var(--primary)] text-[#f2f3f5] hover:bg-[var(--primary)]/90 hover:scale-105 transition-all rounded-xl font-semibold shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+                className="w-full mt-6 bg-[var(--primary)] text-[#f2f3f5] hover:bg-[var(--primary)]/90 hover:scale-105 transition-all rounded-xl font-semibold shadow-[0_0_25px_rgba(217,61,58,0.5)]"
               >
                 Apply for Student Project
               </Button>

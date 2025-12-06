@@ -22,7 +22,7 @@ const AppWrapper = () => {
         appearance={{
           theme: dark,
           variables: {
-            colorPrimary: "#00FF88",
+            colorPrimary: "#D93D3A",
             colorBackground: "#0A0E13",
             colorInputBackground: "rgba(255, 255, 255, 0.05)",
             colorInputText: "#E4E7EB",

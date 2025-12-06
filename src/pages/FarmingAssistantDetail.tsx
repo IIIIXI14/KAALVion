@@ -172,35 +172,35 @@ const FarmingAssistantDetail = () => {
   return (
     <div className="relative min-h-screen bg-[#060b0c] text-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#04191c] via-[#082b2f] to-[#120c1a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,170,0.2),_transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,61,58,0.3),_transparent_55%)]" />
       <Navbar />
 
-      <main className="relative z-10 pt-32 pb-24 space-y-20">
-        <section className="container mx-auto px-6">
-          <p className="uppercase tracking-[0.4em] text-xs text-white/60 mb-4">Patent #AGRI-2024-002</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black max-w-4xl mb-6">
+      <main className="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 space-y-12 sm:space-y-16 md:space-y-20">
+        <section className="container mx-auto px-4 sm:px-6">
+          <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">Patent #AGRI-2024-002</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black max-w-4xl mb-4 sm:mb-6">
             Smart Farming Assistant Suite
           </h1>
-          <p className="text-lg text-white/85 max-w-3xl">
+          <p className="text-base sm:text-lg text-white/85 max-w-3xl">
             A complete automation + monitoring system that gives farmers, greenhouse operators, and agri-managers real-time
             insights, smart irrigation, and AI-driven recommendations. It merges IoT sensors, automated control systems,
             cloud dashboards, and multilingual apps into a high-precision farming ecosystem.
           </p>
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60 mb-2">Purpose</p>
-            <p className="text-white/80">
+          <div className="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6">
+            <p className="text-xs sm:text-sm uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white/60 mb-2">Purpose</p>
+            <p className="text-sm sm:text-base text-white/80">
               Think of it as a personal digital assistant for every farm manager. Monitor soil, control pumps, automate
               irrigation, detect anomalies, and get weather-based recommendations — all from a single pane of glass.
             </p>
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
-          <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-[#0f171c] via-[#0a0d12] to-[#050608] p-10 shadow-[0_35px_110px_rgba(0,0,0,0.65)] backdrop-blur-2xl">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] border border-white/10 bg-gradient-to-br from-[#0f171c] via-[#0a0d12] to-[#050608] p-4 sm:p-6 md:p-8 lg:p-10 shadow-[0_35px_110px_rgba(0,0,0,0.65)] backdrop-blur-2xl">
             <div className="flex flex-col gap-6 pb-8 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-xs font-mono uppercase tracking-[0.55em] text-white/60">Product UI</p>
-                <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+                <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
                   Live farm telemetry carousel
                 </h2>
                 <p className="mt-4 max-w-2xl text-white/70">
@@ -235,7 +235,7 @@ const FarmingAssistantDetail = () => {
               >
                 {farmingGallery.map((panel) => (
                   <div key={panel.title} className="min-w-full px-2">
-                    <div className="grid gap-6 rounded-[28px] border border-white/10 bg-black/35 p-8 md:grid-cols-[1.15fr,0.85fr]">
+                    <div className="grid gap-4 sm:gap-6 rounded-[20px] sm:rounded-[24px] md:rounded-[28px] border border-white/10 bg-black/35 p-4 sm:p-6 md:p-8 grid-cols-1 md:grid-cols-[1.15fr,0.85fr]">
                       <div className="space-y-4">
                         <p className="text-xs font-mono uppercase tracking-[0.5em] text-[var(--primary)]">
                           {panel.subtitle}
@@ -252,7 +252,7 @@ const FarmingAssistantDetail = () => {
                             </div>
                           ))}
                         </div>
-                        <div className="flex items-center gap-3 rounded-2xl border border-[rgba(0,255,136,0.3)] bg-[rgba(0,255,136,0.08)] px-4 py-3 text-sm text-white/80">
+                        <div className="flex items-center gap-3 rounded-2xl border border-[rgba(217,61,58,0.5)] bg-[rgba(217,61,58,0.12)] px-4 py-3 text-sm text-white/80">
                           <ActivitySquare className="h-5 w-5 text-[var(--primary)]" />
                           {panel.alert}
                         </div>
@@ -302,10 +302,10 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-8">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {coreCards.map((card) => (
-              <div key={card.label} className="rounded-3xl border border-white/10 bg-white/5 p-8">
+              <div key={card.label} className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-6 md:p-8">
                 <p className="text-sm uppercase tracking-[0.3em] text-white/60 mb-2">{card.label}</p>
                 <h3 className="text-2xl font-semibold mb-3">{card.title}</h3>
                 {"description" in card ? (
@@ -314,7 +314,7 @@ const FarmingAssistantDetail = () => {
                   <ul className="space-y-2 text-white/80">
                     {card.bullets?.map((bullet) => (
                       <li key={bullet} className="flex gap-2">
-                        <span className="text-emerald-300 mt-1">•</span>
+                        <span className="text-[var(--primary)] mt-1">•</span>
                         <span>{bullet}</span>
                       </li>
                     ))}
@@ -325,10 +325,10 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
-          <div className="rounded-3xl bg-white/5 border border-white/10 p-10 backdrop-blur-2xl">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Automation Engine</h2>
-            <div className="grid lg:grid-cols-2 gap-8">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-2xl">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Automation Engine</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               <div>
                 <p className="text-white/85 mb-4">
                   Rules run directly on the device for reliability. If soil moisture dips, temperature rises, and humidity
@@ -344,7 +344,7 @@ const FarmingAssistantDetail = () => {
                 <ul className="space-y-3 text-white/80">
                   {automationRules.map((rule) => (
                     <li key={rule} className="flex gap-3">
-                      <span className="text-emerald-300 mt-1">✔</span>
+                      <span className="text-[var(--primary)] mt-1">✔</span>
                       <span>{rule}</span>
                     </li>
                   ))}
@@ -354,10 +354,10 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Cloud Dashboard</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-6 md:p-8 lg:p-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Cloud Dashboard</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {dashboardItems.map((item) => (
                 <div key={item} className="rounded-2xl bg-black/30 border border-white/10 p-6">
                   <p className="text-white/80">{item}</p>
@@ -371,14 +371,14 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
+        <section className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
               <h2 className="text-2xl font-bold mb-4">Weather Integration</h2>
               <ul className="space-y-2 text-white/80">
                 {weatherAdvisory.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="text-emerald-300 mt-1">▹</span>
+                    <span className="text-[var(--primary)] mt-1">▹</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -404,13 +404,13 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
+        <section className="container mx-auto px-4 sm:px-6">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Security</h2>
             <ul className="space-y-3 text-white/80">
               {security.map((item) => (
                 <li key={item} className="flex gap-3">
-                  <CheckCircle className="w-5 h-5 text-[#00d094]" />
+                  <CheckCircle className="w-5 h-5 text-[var(--primary)]" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -418,7 +418,7 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
+        <section className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
               <h2 className="text-2xl font-bold mb-4">Device Setup</h2>
@@ -437,7 +437,7 @@ const FarmingAssistantDetail = () => {
                   <ul className="space-y-1 text-white/80">
                     {hardwareComponents.map((item) => (
                       <li key={item} className="flex gap-2">
-                        <span className="text-emerald-300">•</span>
+                        <span className="text-[var(--primary)]">•</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -448,7 +448,7 @@ const FarmingAssistantDetail = () => {
                   <ul className="space-y-1 text-white/80">
                     {softwareComponents.map((item) => (
                       <li key={item} className="flex gap-2">
-                        <span className="text-emerald-300">•</span>
+                        <span className="text-[var(--primary)]">•</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -459,13 +459,13 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
+        <section className="container mx-auto px-4 sm:px-6">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Impact</h2>
             <ul className="space-y-3 text-white/80">
               {impact.map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span className="text-[#00d094] mt-1">▹</span>
+                  <span className="text-[var(--primary)] mt-1">▹</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -473,8 +473,8 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
-          <div className="rounded-3xl bg-gradient-to-r from-[#00d094] to-[#05a4ff] p-[1px]">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="rounded-3xl bg-gradient-to-r from-[#D93D3A] to-[#666666] p-[1px]">
             <div className="rounded-3xl bg-[#03100f] p-10 space-y-6">
               <p className="uppercase text-xs tracking-[0.4em] text-white/70">Future Roadmap</p>
               <h2 className="text-3xl font-bold">The suite evolves as farms grow.</h2>
@@ -504,8 +504,8 @@ const FarmingAssistantDetail = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-6">
-          <div className="rounded-3xl bg-gradient-to-r from-[#00d094] to-[#05a4ff] p-[1px]">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="rounded-3xl bg-gradient-to-r from-[#D93D3A] to-[#666666] p-[1px]">
             <div className="rounded-3xl bg-[#03100f] p-10 flex flex-col lg:flex-row gap-8 items-center justify-between">
               <div>
                 <p className="uppercase text-xs tracking-[0.4em] text-white/70 mb-3">Next Steps</p>
