@@ -66,8 +66,8 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="relative overflow-hidden py-20 sm:py-24 md:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(217,61,58,0.3),transparent_40%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(102,102,102,0.18),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(236,68,59,0.32),transparent_40%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(99,99,99,0.2),transparent_50%)]" />
       <div className="absolute inset-0 grid-overlay opacity-30" />
       <div className="absolute inset-0 noise-overlay opacity-25" />
 
@@ -94,7 +94,7 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-white/12 bg-[rgba(10,14,19,0.85)] p-4 sm:p-6 md:p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[rgba(217,61,58,0.5)] hover:shadow-[0_0_50px_rgba(217,61,58,0.45)] cursor-pointer"
+              className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-white/12 bg-[rgba(10,14,19,0.85)] p-4 sm:p-6 md:p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[rgba(236,68,59,0.55)] hover:shadow-[0_0_50px_rgba(236,68,59,0.48)] cursor-pointer"
               onClick={() => handleServiceClick(service, false)}
             >
               <div className="absolute inset-0 opacity-25">
@@ -135,15 +135,15 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: services.length * 0.08 }}
-            className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border-2 border-[var(--primary)]/40 bg-[rgba(10,14,19,0.85)] p-4 sm:p-6 md:p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[var(--primary)]/70 hover:shadow-[0_0_50px_rgba(217,61,58,0.5)] cursor-pointer"
+            className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border-2 border-[var(--primary)]/40 bg-[rgba(10,14,19,0.85)] p-4 sm:p-6 md:p-8 backdrop-blur-2xl transition hover:-translate-y-2 hover:border-[var(--primary)]/70 hover:shadow-[0_0_50px_rgba(236,68,59,0.55)] cursor-pointer"
             onClick={() => handleServiceClick(studentService, true)}
           >
             <div className="absolute inset-0 opacity-25">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(217,61,58,0.25),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(236,68,59,0.28),transparent_70%)]" />
             </div>
             <div className="relative space-y-3 sm:space-y-4">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-[var(--primary)]/30 bg-[var(--primary)]/10 shadow-[0_10px_40px_rgba(217,61,58,0.5)]">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl border border-[var(--primary)]/30 bg-[var(--primary)]/10 shadow-[0_10px_40px_rgba(236,68,59,0.55)]">
                   <studentService.icon className="h-5 w-5 sm:h-6 sm:w-6 text-[var(--primary)]" />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ const ServicesSection = () => {
                   e.stopPropagation();
                   handleServiceClick(studentService, true);
                 }}
-                className="w-full mt-6 bg-[var(--primary)] text-[#f2f3f5] hover:bg-[var(--primary)]/90 hover:scale-105 transition-all rounded-xl font-semibold shadow-[0_0_25px_rgba(217,61,58,0.5)]"
+                className="w-full mt-6 bg-[var(--primary)] text-[#f2f3f5] hover:bg-[var(--primary)]/90 hover:scale-105 transition-all rounded-xl font-semibold shadow-[0_0_25px_rgba(236,68,59,0.55)]"
               >
                 Apply for Student Project
               </Button>

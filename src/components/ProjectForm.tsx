@@ -357,7 +357,7 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="flex-1 !bg-[var(--primary)] !text-[var(--primary-foreground)] font-semibold !rounded-xl px-8 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,61,58,0.6)] transition-all border-0"
+          className="flex-1 !bg-[var(--primary)] !text-[var(--primary-foreground)] font-semibold !rounded-xl px-8 hover:scale-105 hover:shadow-[0_0_35px_rgba(236,68,59,0.62)] transition-all border-0"
         >
           {isSubmitting ? (
             <>

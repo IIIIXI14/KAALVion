@@ -84,7 +84,7 @@ const HeroSection = () => {
             <Button
               onClick={() => scrollToSection("contact")}
               size="lg"
-                className="w-full sm:w-auto rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--accent)] px-6 py-4 sm:px-8 sm:py-6 text-sm sm:text-[0.95rem] font-semibold tracking-wide text-[var(--primary-foreground)] shadow-[0_0_40px_rgba(217,61,58,0.5)] transition-transform duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_0_50px_rgba(232,90,87,0.6)] min-h-[44px]"
+                className="w-full sm:w-auto rounded-full border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] px-6 py-4 sm:px-8 sm:py-6 text-sm sm:text-[0.95rem] font-semibold tracking-wide text-[var(--primary-foreground)] shadow-[0_0_40px_rgba(236,68,59,0.55)] transition-transform duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_0_55px_rgba(255,111,100,0.6)] min-h-[44px]"
             >
                 Request Demo
             </Button>
@@ -92,7 +92,7 @@ const HeroSection = () => {
                 onClick={() => scrollToSection("patents")}
               size="lg"
               variant="outline"
-                className="w-full sm:w-auto rounded-full border border-[rgba(228,231,235,0.3)] bg-transparent px-6 py-4 sm:px-8 sm:py-6 text-sm sm:text-[0.95rem] font-semibold tracking-wide text-white hover:border-[rgba(217,61,58,0.7)] hover:bg-white/5 hover:shadow-[0_0_25px_rgba(217,61,58,0.4)] min-h-[44px]"
+                className="w-full sm:w-auto rounded-full border border-[rgba(228,231,235,0.3)] bg-transparent px-6 py-4 sm:px-8 sm:py-6 text-sm sm:text-[0.95rem] font-semibold tracking-wide text-white hover:border-[rgba(236,68,59,0.75)] hover:bg-white/5 hover:shadow-[0_0_25px_rgba(236,68,59,0.45)] min-h-[44px]"
             >
                 Explore Products
             </Button>
@@ -107,7 +107,7 @@ const HeroSection = () => {
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-lg transition hover:-translate-y-1 hover:border-[rgba(217,61,58,0.5)] hover:shadow-[0_0_35px_rgba(217,61,58,0.25)]"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 backdrop-blur-lg transition hover:-translate-y-1 hover:border-[rgba(236,68,59,0.55)] hover:shadow-[0_0_35px_rgba(236,68,59,0.28)]"
                 >
                   <div className="text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.3em] sm:tracking-[0.35em] text-white/50">{stat.label}</div>
                   <div className="mt-2 text-2xl sm:text-3xl font-semibold text-white">{stat.value}</div>
@@ -141,7 +141,7 @@ const HeroSection = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
           >
             <div className="pointer-events-none absolute -inset-3 sm:-inset-6 rounded-[28px] sm:rounded-[36px] border border-white/5 bg-gradient-to-br from-white/5 to-transparent opacity-70" />
-            <div className="pointer-events-none absolute inset-0 blur-[80px] sm:blur-[120px] bg-[radial-gradient(circle_at_30%_20%,rgba(217,61,58,0.45),transparent_55%)]" />
+            <div className="pointer-events-none absolute inset-0 blur-[80px] sm:blur-[120px] bg-[radial-gradient(circle_at_30%_20%,rgba(236,68,59,0.48),transparent_55%)]" />
             <div className="relative space-y-4 sm:space-y-5 rounded-[24px] sm:rounded-[32px] border border-white/10 bg-white/5 p-4 sm:p-6 md:p-8 backdrop-blur-2xl">
               <p className="text-[0.65rem] sm:text-xs uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white/60">Systems in rotation</p>
               <div className="space-y-4 sm:space-y-5">
@@ -157,7 +157,7 @@ const HeroSection = () => {
                         navigate(panel.link);
                       }
                     }}
-                    className="rounded-xl sm:rounded-2xl border border-white/10 bg-[#0f141c]/70 p-4 sm:p-5 transition hover:-translate-y-1 hover:border-[rgba(217,61,58,0.6)] hover:shadow-[0_10px_45px_rgba(217,61,58,0.4)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f141c] min-h-[44px]"
+                    className="rounded-xl sm:rounded-2xl border border-white/10 bg-[#0f141c]/70 p-4 sm:p-5 transition hover:-translate-y-1 hover:border-[rgba(236,68,59,0.65)] hover:shadow-[0_10px_45px_rgba(236,68,59,0.42)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f141c] min-h-[44px]"
               >
                     <p className="text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[var(--primary)]">{panel.patent}</p>
                     <h3 className="mt-2 text-lg sm:text-xl font-semibold text-white">{panel.title}</h3>

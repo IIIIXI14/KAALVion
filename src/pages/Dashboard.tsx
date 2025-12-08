@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div className="relative min-h-screen bg-[#0A0E13] text-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f1630] via-[#111933] to-[#150c1f]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(217,61,58,0.28),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(236,68,59,0.3),transparent_55%)]" />
       <Navbar />
 
       <main className="relative z-10 pt-32 pb-24">

@@ -191,7 +191,7 @@ const WifiAttendanceDetail = () => {
   return (
     <div className="relative min-h-screen bg-[#070812] text-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f1630] via-[#111933] to-[#150c1f]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,61,58,0.35),_transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(236,68,59,0.36),_transparent_55%)]" />
       <Navbar />
 
       <main className="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 space-y-12 sm:space-y-16 md:space-y-20">

@@ -172,7 +172,7 @@ const FarmingAssistantDetail = () => {
   return (
     <div className="relative min-h-screen bg-[#060b0c] text-white overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#04191c] via-[#082b2f] to-[#120c1a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(217,61,58,0.3),_transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(236,68,59,0.32),_transparent_55%)]" />
       <Navbar />
 
       <main className="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 space-y-12 sm:space-y-16 md:space-y-20">
@@ -252,7 +252,7 @@ const FarmingAssistantDetail = () => {
                             </div>
                           ))}
                         </div>
-                        <div className="flex items-center gap-3 rounded-2xl border border-[rgba(217,61,58,0.5)] bg-[rgba(217,61,58,0.12)] px-4 py-3 text-sm text-white/80">
+                        <div className="flex items-center gap-3 rounded-2xl border border-[rgba(236,68,59,0.55)] bg-[rgba(236,68,59,0.14)] px-4 py-3 text-sm text-white/80">
                           <ActivitySquare className="h-5 w-5 text-[var(--primary)]" />
                           {panel.alert}
                         </div>

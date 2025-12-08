@@ -10,12 +10,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[0_12px_35px_rgba(217,61,58,0.5)] hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_16px_45px_rgba(232,90,87,0.6)]",
+          "border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[0_12px_35px_rgba(236,68,59,0.55)] hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_16px_45px_rgba(255,111,100,0.62)]",
         destructive: "border border-destructive bg-destructive text-destructive-foreground hover:-translate-y-1",
         outline:
-          "border border-white/25 bg-transparent text-white hover:border-[rgba(217,61,58,0.7)] hover:text-white hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(217,61,58,0.4)]",
+          "border border-white/25 bg-transparent text-white hover:border-[rgba(236,68,59,0.75)] hover:text-white hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(236,68,59,0.45)]",
         secondary:
-          "border border-white/10 bg-white/10 text-white hover:border-[rgba(217,61,58,0.5)] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(217,61,58,0.3)]",
+          "border border-white/10 bg-white/10 text-white hover:border-[rgba(236,68,59,0.55)] hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(236,68,59,0.32)]",
         ghost: "text-white/70 hover:text-white hover:-translate-y-1",
         link: "text-primary underline-offset-4 hover:underline tracking-normal",
       },

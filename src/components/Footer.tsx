@@ -39,7 +39,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[hsl(222,47%,11%)] text-white py-10 sm:py-12 md:py-16">
+    <footer className="bg-gradient-to-r from-[hsl(214,33%,8%)] via-[rgba(236,68,59,0.08)] to-[hsl(214,33%,10%)] text-white py-10 sm:py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-10 md:mb-12">
           <motion.div

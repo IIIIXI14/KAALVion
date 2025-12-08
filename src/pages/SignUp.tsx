@@ -7,7 +7,7 @@ const SignUpPage = () => {
     <div className="relative min-h-screen bg-[#0A0E13] text-white overflow-hidden flex items-center justify-center">
       {/* Technical Noir Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f1630] via-[#111933] to-[#150c1f]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(217,61,58,0.28),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(236,68,59,0.3),transparent_55%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(102,102,102,0.12),transparent_55%)]" />
       <div className="absolute inset-0 grid-overlay opacity-20" />
 
@@ -49,7 +49,7 @@ const SignUpPage = () => {
                     "bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-white/30 transition-all duration-300 rounded-xl",
                   socialButtonsBlockButtonText: "font-semibold",
                   formButtonPrimary:
-                    "bg-[#D93D3A] hover:bg-[#D93D3A]/90 text-[#0A0E13] font-semibold rounded-xl shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition-all duration-300 hover:scale-105",
+                    "bg-[#ec443b] hover:bg-[#ec443b]/90 text-[#0A0E13] font-semibold rounded-xl shadow-[0_10px_35px_rgba(236,68,59,0.55)] transition-all duration-300 hover:scale-105",
                   formFieldInput:
                     "bg-white/5 border-white/20 text-white rounded-xl focus:border-[#D93D3A] focus:ring-2 focus:ring-[#D93D3A]/20",
                   formFieldLabel: "text-white/80 font-medium",

@@ -13,7 +13,7 @@ const AuthButtons = ({ scrollToSection }: AuthButtonsProps) => {
       <div className="flex items-center gap-2 sm:gap-3">
       <Button
         onClick={() => scrollToSection("contact")}
-        className="rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(232,90,87,0.6)]"
+        className="rounded-full border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(236,68,59,0.55)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(255,111,100,0.62)]"
       >
         Request Demo
       </Button>
@@ -34,7 +34,7 @@ const AuthButtons = ({ scrollToSection }: AuthButtonsProps) => {
         </SignInButton>
         <SignUpButton mode="modal">
           <Button
-            className="w-full sm:w-auto rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(232,90,87,0.6)] min-h-[44px]"
+            className="w-full sm:w-auto rounded-full border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(236,68,59,0.55)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(255,111,100,0.62)] min-h-[44px]"
           >
             Sign Up
           </Button>
@@ -45,7 +45,7 @@ const AuthButtons = ({ scrollToSection }: AuthButtonsProps) => {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
         <Button
           onClick={() => scrollToSection("contact")}
-          className="w-full sm:w-auto rounded-full border border-[rgba(217,61,58,0.6)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(217,61,58,0.5)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(232,90,87,0.6)] min-h-[44px]"
+          className="w-full sm:w-auto rounded-full border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_10px_35px_rgba(236,68,59,0.55)] transition duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_12px_40px_rgba(255,111,100,0.62)] min-h-[44px]"
         >
           Request Demo
         </Button>

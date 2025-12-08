@@ -49,7 +49,7 @@ const PatentsSection = () => {
 
   return (
     <section id="patents" className="relative overflow-hidden py-20 sm:py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(217,61,58,0.28),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(236,68,59,0.3),transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(102,102,102,0.12),transparent_55%)]" />
       <div className="pointer-events-none absolute inset-0 grid-overlay opacity-40" />
       <div className="pointer-events-none absolute inset-0 noise-overlay opacity-30" />
