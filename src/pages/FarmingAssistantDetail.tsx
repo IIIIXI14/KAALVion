@@ -196,7 +196,7 @@ const FarmingAssistantDetail = () => {
         </section>
 
         <section className="container mx-auto px-4 sm:px-6">
-          <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] border border-white/10 bg-gradient-to-br from-[#0f171c] via-[#0a0d12] to-[#050608] p-4 sm:p-6 md:p-8 lg:p-10 shadow-[0_35px_110px_rgba(0,0,0,0.65)] backdrop-blur-2xl">
+          <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] border border-white/10 bg-gradient-to-br from-[#0f171c] via-[#0a0d12] to-[#050608] p-4 sm:p-6 md:p-8 lg:p-10 shadow-[0_35px_110px_rgba(0,0,0,0.65)]">
             <div className="flex flex-col gap-6 pb-8 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-xs font-mono uppercase tracking-[0.55em] text-white/60">Product UI</p>
@@ -326,7 +326,7 @@ const FarmingAssistantDetail = () => {
         </section>
 
         <section className="container mx-auto px-4 sm:px-6">
-          <div className="rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-2xl">
+          <div className="rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Automation Engine</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               <div>

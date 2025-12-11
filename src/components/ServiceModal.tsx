@@ -24,7 +24,7 @@ const ServiceModal = ({ open, onOpenChange, service, isStudent = false }: Servic
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(102,102,102,0.08),transparent_50%)]" />
           <div className="absolute inset-0 grid-overlay opacity-20" />
 
-          <div className="relative bg-[rgba(10,14,19,0.95)] backdrop-blur-2xl border border-white/10 rounded-[28px] p-8">
+          <div className="relative bg-[rgba(10,14,19,0.95)] border border-white/10 rounded-[28px] p-8">
             {/* Custom Close Button */}
             <button
               onClick={() => onOpenChange(false)}

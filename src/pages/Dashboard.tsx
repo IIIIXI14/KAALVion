@@ -20,7 +20,7 @@ const Dashboard = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="rounded-[28px] border border-white/10 bg-[rgba(10,14,19,0.95)] backdrop-blur-2xl p-8 shadow-[0_25px_70px_rgba(0,0,0,0.65)]">
+            <div className="rounded-[28px] border border-white/10 bg-[rgba(10,14,19,0.95)] p-8 shadow-[0_25px_70px_rgba(0,0,0,0.65)]">
               <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[var(--primary)] to-[#666666] bg-clip-text text-transparent">
                 Dashboard
               </h1>

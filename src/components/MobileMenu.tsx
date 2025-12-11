@@ -32,7 +32,7 @@ const MobileMenu = ({ isOpen, onClose, scrollToSection }: MobileMenuProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 z-50"
             onClick={onClose}
           />
 
@@ -42,7 +42,7 @@ const MobileMenu = ({ isOpen, onClose, scrollToSection }: MobileMenuProps) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[rgba(10,14,19,0.98)] border-l border-white/10 backdrop-blur-2xl z-50 overflow-y-auto"
+            className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[rgba(10,14,19,0.98)] border-l border-white/10 z-50 overflow-y-auto"
           >
             <div className="flex flex-col h-full">
               {/* Header */}

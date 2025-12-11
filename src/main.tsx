@@ -34,7 +34,7 @@ const AppWrapper = () => {
             fontSize: "0.875rem",
           },
           elements: {
-            userButtonPopoverCard: "bg-[#0A0E13] border border-white/10 backdrop-blur-2xl",
+            userButtonPopoverCard: "bg-[#0A0E13] border border-white/10",
             userButtonPopoverActionButton: "text-white hover:bg-white/10",
             userButtonPopoverActionButtonText: "text-white/80",
             userButtonPopoverFooter: "border-t border-white/10",

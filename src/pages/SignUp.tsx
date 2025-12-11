@@ -17,7 +17,7 @@ const SignUpPage = () => {
         transition={{ duration: 0.6 }}
         className="relative z-10 w-full max-w-md px-6"
       >
-        <div className="rounded-[28px] border border-white/10 bg-[rgba(10,14,19,0.95)] backdrop-blur-2xl p-8 shadow-[0_25px_70px_rgba(0,0,0,0.65)]">
+        <div className="rounded-[28px] border border-white/10 bg-[rgba(10,14,19,0.95)] p-8 shadow-[0_25px_70px_rgba(0,0,0,0.65)]">
           <div className="mb-6 text-center">
             <h1 className="text-3xl font-black mb-2 bg-gradient-to-r from-[var(--primary)] to-[#666666] bg-clip-text text-transparent">
               Join KAALVION

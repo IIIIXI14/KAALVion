@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Linkedin, Instagram, Mail, MapPin } from "lucide-react";
+import { Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import logoIcon from "@/assets/KaalVion_DarkLogo_img.png";
 import logoName from "@/assets/KaalVion_DarkLogo_name .png";
 
@@ -123,6 +123,10 @@ const Footer = () => {
                 <a href="mailto:kaalvion@gmail.com" className="hover:text-white transition-smooth break-all">
                   kaalvion@gmail.com
                 </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <a href="tel:+917718850412" className="hover:text-white transition-smooth break-all">+91 7718850412</a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />

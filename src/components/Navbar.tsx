@@ -10,7 +10,6 @@ import logoName from "@/assets/KaalVion_DarkLogo_name .png";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hoveredLetter, setHoveredLetter] = useState<{ label: string; index: number } | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -42,44 +41,12 @@ const Navbar = () => {
     }
   };
 
-  const renderLabel = (label: string) => {
-    return label.split("").map((char, index) => {
-      const isActive = hoveredLetter?.label === label;
-      const distance = isActive ? Math.abs(index - (hoveredLetter?.index ?? 0)) : null;
-      const influence = distance !== null ? Math.max(0, 1 - distance * 0.45) : 0;
-      const color = isActive
-        ? `hsla(3, 82%, 58%, ${0.55 + 0.4 * influence})`
-        : undefined;
-      const shadowIntensity = isActive ? 0.4 + 0.35 * influence : 0;
-      const textShadow = isActive
-        ? `0 0 12px rgba(236,68,59,${0.5 * shadowIntensity}), 0 0 24px rgba(255,255,255,${0.6 * shadowIntensity}), 0 0 36px rgba(236,68,59,${0.35 * shadowIntensity})`
-        : "none";
-
-      return (
-        <span
-          key={`${label}-${index}`}
-          className="nav-letter"
-          style={{
-            color,
-            textShadow,
-          }}
-          onMouseEnter={() => setHoveredLetter({ label, index })}
-          onMouseLeave={() => setHoveredLetter(null)}
-          onFocus={() => setHoveredLetter({ label, index })}
-          onBlur={() => setHoveredLetter(null)}
-        >
-          {char}
-        </span>
-      );
-    });
-  };
-
   return (
     <>
     <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className="fixed top-4 left-0 right-0 z-50 pointer-events-none">
         <div className="container mx-auto px-4 sm:px-6">
         <div
-            className={`flex items-center justify-between gap-3 sm:gap-6 rounded-[999px] border border-white/10 bg-[rgba(10,14,19,0.72)] px-3 py-2 sm:px-6 sm:py-3 md:px-10 md:py-4 shadow-[0_25px_70px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition duration-300 ${
+            className={`flex items-center justify-between gap-3 sm:gap-6 rounded-[999px] border border-white/10 bg-[rgba(10,14,19,0.72)] px-3 py-2 sm:px-6 sm:py-3 md:px-10 md:py-4 shadow-[0_25px_70px_rgba(0,0,0,0.65)] transition duration-300 ${
             scrolled ? "scale-[1.015]" : "scale-100"
           } pointer-events-auto`}
         >
@@ -103,9 +70,9 @@ const Navbar = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.id)}
-                className="relative group text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)] nav-link"
+                className="relative text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)]"
               >
-                <span className="inline-flex gap-[0.04em]">{renderLabel(item.label)}</span>
+                {item.label}
                 <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-[var(--primary)] transition-transform duration-300 group-hover:scale-x-100" />
               </button>
             ))}

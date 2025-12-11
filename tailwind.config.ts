@@ -88,6 +88,38 @@ export default {
           "0%, 100%": { opacity: "0.5" },
           "50%": { opacity: "1" },
         },
+        "light-ray-1": {
+          "0%": { opacity: "0", transform: "translateY(-100%)" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { opacity: "0", transform: "translateY(100vh)" },
+        },
+        "light-ray-2": {
+          "0%": { opacity: "0", transform: "translateY(-100%)" },
+          "15%": { opacity: "1" },
+          "85%": { opacity: "1" },
+          "100%": { opacity: "0", transform: "translateY(100vh)" },
+        },
+        "light-ray-3": {
+          "0%": { opacity: "0", transform: "translateY(-100%)" },
+          "20%": { opacity: "1" },
+          "80%": { opacity: "1" },
+          "100%": { opacity: "0", transform: "translateY(100vh)" },
+        },
+        "float-orb-1": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: "0.4" },
+          "33%": { transform: "translate(30px, -30px) scale(1.1)", opacity: "0.5" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)", opacity: "0.35" },
+        },
+        "float-orb-2": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: "0.35" },
+          "33%": { transform: "translate(-25px, 25px) scale(1.15)", opacity: "0.45" },
+          "66%": { transform: "translate(20px, -20px) scale(0.95)", opacity: "0.3" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.15", transform: "translate(-50%, -50%) scale(1)" },
+          "50%": { opacity: "0.25", transform: "translate(-50%, -50%) scale(1.1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -96,6 +128,12 @@ export default {
         "slide-up": "slide-up 0.8s ease-out",
         "float": "float 3s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
+        "light-ray-1": "light-ray-1 8s ease-in-out infinite",
+        "light-ray-2": "light-ray-2 10s ease-in-out infinite 2s",
+        "light-ray-3": "light-ray-3 12s ease-in-out infinite 4s",
+        "float-orb-1": "float-orb-1 20s ease-in-out infinite",
+        "float-orb-2": "float-orb-2 25s ease-in-out infinite 5s",
+        "pulse-glow": "pulse-glow 6s ease-in-out infinite",
       },
       fontFamily: {
         sans: ['Satoshi', 'system-ui', 'sans-serif'],

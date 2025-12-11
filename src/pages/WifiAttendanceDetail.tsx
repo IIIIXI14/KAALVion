@@ -262,7 +262,7 @@ const WifiAttendanceDetail = () => {
               >
                 {gallery.map((item, index) => (
                   <div key={item.src + index} className="min-w-full flex justify-center">
-                    <div className="w-full max-w-[280px] sm:max-w-[320px] bg-white/10 border border-white/15 rounded-[32px] sm:rounded-[40px] p-4 sm:p-6 md:p-8 backdrop-blur-lg">
+                    <div className="w-full max-w-[280px] sm:max-w-[320px] bg-white/10 border border-white/15 rounded-[32px] sm:rounded-[40px] p-4 sm:p-6 md:p-8">
                       <img src={item.src} alt={item.caption} className="w-full h-auto object-contain" />
                       <p className="text-center text-white/80 text-xs sm:text-sm mt-3 sm:mt-4">{item.caption}</p>
                     </div>

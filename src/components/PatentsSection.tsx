@@ -49,10 +49,8 @@ const PatentsSection = () => {
 
   return (
     <section id="patents" className="relative overflow-hidden py-20 sm:py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(236,68,59,0.3),transparent_50%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(102,102,102,0.12),transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 grid-overlay opacity-40" />
-      <div className="pointer-events-none absolute inset-0 noise-overlay opacity-30" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(236,68,59,0.15),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(102,102,102,0.08),transparent_55%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6" ref={ref}>
         <motion.div
@@ -78,11 +76,8 @@ const PatentsSection = () => {
               initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.9, delay: index * 0.2 }}
-              className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] md:rounded-[32px] border border-white/12 bg-[rgba(10,14,19,0.82)] p-4 sm:p-6 md:p-8 lg:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
+              className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] md:rounded-[32px] border border-white/12 bg-[rgba(10,14,19,0.9)] p-4 sm:p-6 md:p-8 lg:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.6)]"
             >
-              <div className="pointer-events-none absolute inset-0 opacity-40">
-                <div className="absolute inset-0 animate-gradient-mesh" />
-              </div>
               <div className="relative grid gap-6 sm:gap-8 md:gap-12 grid-cols-1 lg:grid-cols-[1.1fr,0.9fr]">
                 <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-center gap-3 sm:gap-4">
@@ -113,7 +108,7 @@ const PatentsSection = () => {
 
                 <div className="relative mt-6 lg:mt-0">
                   <div className="pointer-events-none absolute -inset-3 sm:-inset-6 rounded-[20px] sm:rounded-[28px] border border-white/5 opacity-60" />
-                  <div className="relative rounded-[20px] sm:rounded-[28px] border border-white/8 bg-black/40 p-4 sm:p-6 backdrop-blur-xl">
+                  <div className="relative rounded-[20px] sm:rounded-[28px] border border-white/8 bg-black/40 p-4 sm:p-6">
                     <div className="relative overflow-hidden rounded-[16px] sm:rounded-[24px] border border-white/10">
                       <img src={patent.image} alt={patent.title} className="h-full w-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

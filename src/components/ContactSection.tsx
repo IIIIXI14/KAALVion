@@ -71,8 +71,8 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 md:py-32 bg-secondary/30 backdrop-blur-xl">
-      <div className="container mx-auto px-4 sm:px-6" ref={ref}>
+    <section id="contact" className="py-20 sm:py-24 md:py-32 bg-gradient-to-br from-transparent via-transparent to-[rgba(236,68,59,0.07)] relative">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -86,14 +86,13 @@ const ContactSection = () => {
             Ready to bring your project to life? Let's talk.
           </p>
         </motion.div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-6xl mx-auto items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <div className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-medium">
+            <div className="rounded-xl sm:rounded-2xl border border-[var(--primary)]/20 bg-white/7 p-6 sm:p-8 md:p-10 flex flex-col gap-6 shadow-none">
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <label className="block text-sm font-semibold mb-2">Name</label>
@@ -102,10 +101,9 @@ const ContactSection = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     placeholder="John Doe"
-                    className="rounded-xl min-h-[44px]"
+                    className="rounded-xl min-h-[44px] border border-white/10 bg-transparent focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)]/80 transition-all"
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold mb-2">Email</label>
                   <Input
@@ -114,17 +112,16 @@ const ContactSection = () => {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     placeholder="john@example.com"
-                    className="rounded-xl min-h-[44px]"
+                    className="rounded-xl min-h-[44px] border border-white/10 bg-transparent focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)]/80 transition-all"
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold mb-2">Project Type</label>
                   <Select
                     value={formData.projectType}
                     onValueChange={(value) => setFormData({ ...formData, projectType: value })}
                   >
-                    <SelectTrigger className="rounded-xl min-h-[44px]">
+                    <SelectTrigger className="rounded-xl min-h-[44px] border border-white/10 bg-transparent focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)]/80 transition-all">
                       <SelectValue placeholder="Select project type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -135,7 +132,6 @@ const ContactSection = () => {
                     </SelectContent>
                   </Select>
                 </div>
-
                 <div>
                   <label className="block text-sm font-semibold mb-2">Message</label>
                   <Textarea
@@ -143,19 +139,17 @@ const ContactSection = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                     placeholder="Tell us about your project..."
-                    className="rounded-xl min-h-32"
+                    className="rounded-xl min-h-32 border border-white/10 bg-transparent focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)]/80 transition-all"
                   />
                 </div>
-
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full gradient-primary text-white font-semibold rounded-xl hover:scale-105 transition-smooth shadow-medium min-h-[44px]"
+                  className="w-full sm:w-auto rounded-full border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] px-6 py-4 sm:px-8 sm:py-6 text-sm sm:text-[0.95rem] font-semibold tracking-wide text-[var(--primary-foreground)] shadow-[0_0_40px_rgba(236,68,59,0.55)] transition-transform duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_0_55px_rgba(255,111,100,0.6)] min-h-[44px]"
                 >
                   Request Demo
                 </Button>
               </form>
-
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border space-y-3 sm:space-y-4">
                 <a
                   href="mailto:hello@kaalvion.com"
@@ -168,6 +162,13 @@ const ContactSection = () => {
                   <Phone className="w-5 h-5 flex-shrink-0" />
                   <span>+1 (555) 123-4567</span>
                 </div>
+                <a
+                  href="tel:+917718850412"
+                  className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground min-h-[44px] hover:text-primary transition-smooth"
+                >
+                  <Phone className="w-5 h-5 flex-shrink-0" />
+                  <span>+91 7718850412</span>
+                </a>
                 <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground min-h-[44px]">
                   <MapPin className="w-5 h-5 flex-shrink-0" />
                   <span>San Francisco, CA</span>
@@ -175,7 +176,6 @@ const ContactSection = () => {
               </div>
             </div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -185,7 +185,7 @@ const ContactSection = () => {
             <img
               src={contactIllustration}
               alt="Contact Us"
-              className="w-full rounded-xl sm:rounded-2xl shadow-strong"
+              className="w-full rounded-xl sm:rounded-2xl shadow-none"
             />
           </motion.div>
         </div>
