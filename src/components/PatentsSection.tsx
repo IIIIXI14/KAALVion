@@ -6,6 +6,8 @@ import { Wifi, Sprout } from "lucide-react";
 import wifiAttendance from "@/assets/wifi-attendance.jpg";
 import smartFarming from "@/assets/smart-farming.jpg";
 import logoName from "@/assets/KaalVion_DarkLogo_name .png";
+import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
+import ExpandableExplanation from "@/components/ExpandableExplanation";
 
 const patents = [
   {
@@ -92,14 +94,66 @@ const PatentsSection = () => {
                     </div>
                   </div>
                   <p className="text-base sm:text-lg text-white/75">{patent.subtitle}</p>
-                  <p className="text-sm sm:text-base text-white/65">{patent.copy}</p>
+                  <p className="text-sm sm:text-base text-white/65">
+                    {patent.title === "WiFi-Based Attendance Platform" ? (
+                      <>
+                        <TechnicalTermTooltip term="MAC">MAC</TechnicalTermTooltip> + <TechnicalTermTooltip term="Biometric proof">biometric</TechnicalTermTooltip> <TechnicalTermTooltip term="Dual authentication">dual authentication</TechnicalTermTooltip> automates check-ins the moment a registered device hits the trusted WiFi zone.
+                        <span className="block mt-2 text-xs text-white/50 italic">
+                          In simple terms: Uses your device&apos;s unique ID plus fingerprint/face recognition
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <TechnicalTermTooltip term="ESP32">ESP32</TechnicalTermTooltip> <TechnicalTermTooltip term="Irrigation mesh">irrigation mesh</TechnicalTermTooltip>, <TechnicalTermTooltip term="Telemetry">sensor telemetry</TechnicalTermTooltip>, and weather-aware rules orchestrate entire fields from one dashboard.
+                        <span className="block mt-2 text-xs text-white/50 italic">
+                          In simple terms: Smart sensors that talk to each other to water crops automatically
+                        </span>
+                      </>
+                    )}
+                  </p>
+                  <ExpandableExplanation
+                    term="How it works"
+                    explanation={patent.title === "WiFi-Based Attendance Platform" 
+                      ? "When you connect to the office WiFi, the system recognizes your device's unique ID. Combined with daily fingerprint or face verification, it automatically marks you as present. No manual check-in needed!"
+                      : "Sensors placed in fields measure soil moisture, temperature, and humidity. These sensors communicate with each other and a central system. When conditions indicate crops need water, the system automatically activates irrigation. Weather data helps predict future needs."
+                    }
+                    example={patent.title === "WiFi-Based Attendance Platform"
+                      ? "Like a smart door that recognizes you automatically when you walk in"
+                      : "Like a smart sprinkler system that knows exactly when your garden needs water"
+                    }
+                    className="my-4"
+                  />
                   <div className="grid gap-2 sm:gap-3 text-xs sm:text-sm text-white/70">
-                    {patent.bullets.map((bullet) => (
-                      <div key={bullet} className="flex items-start gap-2 sm:gap-3">
-                        <span className="mt-1.5 sm:mt-1 h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[var(--primary)] flex-shrink-0" />
-                        <span>{bullet}</span>
-                      </div>
-                    ))}
+                    {patent.bullets.map((bullet) => {
+                      let simplifiedBullet = bullet;
+                      if (bullet.includes("Supabase RLS")) {
+                        simplifiedBullet = bullet.replace("Accurate real-time logs w/ Supabase RLS", "Instant attendance records stored securely online");
+                      } else if (bullet.includes("Rule execution at the edge")) {
+                        simplifiedBullet = bullet.replace("Rule execution at the edge", "Smart decisions happen on the device, even without internet");
+                      }
+                      return (
+                        <div key={bullet} className="flex items-start gap-2 sm:gap-3">
+                          <span className="mt-1.5 sm:mt-1 h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[var(--primary)] flex-shrink-0" />
+                          <span>
+                            {simplifiedBullet.includes("Supabase") ? (
+                              <>
+                                {simplifiedBullet.replace("w/ Supabase RLS", "").trim()}
+                                {" "}
+                                <TechnicalTermTooltip term="Supabase RLS" customExplanation="stored securely online">
+                                  (stored securely online)
+                                </TechnicalTermTooltip>
+                              </>
+                            ) : simplifiedBullet.includes("at the edge") ? (
+                              <>
+                                Smart decisions happen <TechnicalTermTooltip term="Edge" customExplanation="on the device, even without internet">on the device</TechnicalTermTooltip>, even without internet
+                              </>
+                            ) : (
+                              simplifiedBullet
+                            )}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
                   <Button size="lg" onClick={() => navigate(patent.cta.href)} className="w-full sm:w-auto">
                     {patent.cta.label}
@@ -122,11 +176,19 @@ const PatentsSection = () => {
                     </div>
                     <div className="mt-4 sm:mt-6 space-y-2 sm:space-y-3 font-mono text-[0.65rem] sm:text-xs text-white/65">
                       <div className="flex justify-between border-b border-white/10 pb-2">
-                        <span>EDGE MODES</span>
+                        <span>
+                          <TechnicalTermTooltip term="Edge" customExplanation="Device capabilities that work independently">
+                            EDGE MODES
+                          </TechnicalTermTooltip>
+                        </span>
                         <span className="text-right">{index === 0 ? "Attendance + Biometric" : "Irrigation + Sensors"}</span>
                       </div>
                       <div className="flex justify-between border-b border-white/10 pb-2">
-                        <span>SYNC LATENCY</span>
+                        <span>
+                          <TechnicalTermTooltip term="Telemetry" customExplanation="Time taken to sync data from device to cloud">
+                            SYNC LATENCY
+                          </TechnicalTermTooltip>
+                        </span>
                         <span>{index === 0 ? "0.53s" : "0.64s"}</span>
                       </div>
                       <div className="flex justify-between">

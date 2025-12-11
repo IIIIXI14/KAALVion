@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Instagram, Mail, MapPin, Phone, Github } from "lucide-react";
 import logoIcon from "@/assets/KaalVion_DarkLogo_img.png";
 import logoName from "@/assets/KaalVion_DarkLogo_name .png";
+import Glossary from "@/components/Glossary";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -74,6 +75,15 @@ const Footer = () => {
               >
                 <Instagram className="w-5 h-5" />
               </a>
+              <a
+                href="https://github.com/kaalvion"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-smooth hover:scale-110 min-h-[44px]"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
             </div>
           </motion.div>
 
@@ -107,6 +117,13 @@ const Footer = () => {
                   )}
                 </li>
               ))}
+              <li>
+                <Glossary trigger={
+                  <button className="text-sm sm:text-base text-white/70 hover:text-white transition-smooth hover:translate-x-1 inline-block text-left min-h-[44px]">
+                    Help & Glossary
+                  </button>
+                } />
+              </li>
             </ul>
           </motion.div>
 

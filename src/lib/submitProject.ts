@@ -1,7 +1,7 @@
 import type { ProjectSubmission } from "@/types/project";
 import { supabase } from "./supabase";
 
-const WHATSAPP_NUMBER = "7208737077";
+const WHATSAPP_NUMBER = "7718850412";
 
 /**
  * Format project data into WhatsApp message

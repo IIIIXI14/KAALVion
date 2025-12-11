@@ -4,41 +4,49 @@ import { Globe, Smartphone, Radio, BadgeCheck, CloudCog, CircuitBoard, Graduatio
 import { Button } from "@/components/ui/button";
 import ServiceModal from "./ServiceModal";
 import type { ServiceData } from "@/types/project";
+import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
+import ExpandableExplanation from "@/components/ExpandableExplanation";
 
 const services = [
   {
     icon: Globe,
     title: "Web Systems",
+    simpleTerms: "Fast-loading admin dashboards that work offline, managing multiple organizations securely",
     description: "Next.js, Vite, edge-rendered control rooms, multi-tenant admin surfaces.",
     stack: ["Next.js 14", "Vite", "Framer Motion", "Edge Functions"],
   },
   {
     icon: Smartphone,
     title: "Mobile & Wearables",
+    simpleTerms: "Apps for phones and smartwatches that work without internet, login with fingerprint/face",
     description: "Flutter + React Native apps with biometric auth, offline-first sync, OTA updates.",
     stack: ["Flutter", "React Native", "Expo", "Secure Enclaves"],
   },
   {
     icon: Radio,
     title: "IoT & Edge",
+    simpleTerms: "Smart sensors that work independently and communicate wirelessly over long distances",
     description: "ESP32, Termux, WiFi mesh, LoRa, and sensor fusion orchestrations.",
     stack: ["ESP32", "Termux", "Node edge scanners", "BLE / WiFi mesh"],
   },
   {
     icon: CloudCog,
     title: "Cloud & Infrastructure",
+    simpleTerms: "Secure online storage and services that keep each user's data separate",
     description: "Supabase RLS, Firebase FCM, AWS CDK, observability pipelines.",
     stack: ["Supabase", "Firebase", "AWS CDK", "Grafana"],
   },
   {
     icon: BadgeCheck,
     title: "Interfaces",
+    simpleTerms: "Easy-to-use dashboards and control panels, available in multiple languages",
     description: "Desktop-grade dashboards, industrial UI, multilingual command centers.",
     stack: ["Epilogue/Satoshi", "Design tokens", "Tailwind", "Three.js"],
   },
   {
     icon: CircuitBoard,
     title: "Automation Ops",
+    simpleTerms: "Automated testing, deployment, and remote updates for devices",
     description: "CI/CD, firmware deployment, telemetry monitoring, on-site commissioning.",
     stack: ["GitHub Actions", "Docker", "IoT OTA", "Telemetry APIs"],
   },
@@ -81,7 +89,7 @@ const ServicesSection = () => {
             Full-spectrum engineering, orchestrated like an <span className="glow-gradient">industrial console</span>.
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-white/70">
-            Every capability plugs into our telemetry layer—IoT, cloud, and interface teams operating as a single system.
+            Every capability plugs into our <TechnicalTermTooltip term="Telemetry">telemetry layer</TechnicalTermTooltip>—<TechnicalTermTooltip term="IoT">IoT</TechnicalTermTooltip>, cloud, and interface teams operating as a single system.
           </p>
         </motion.div>
 
@@ -103,14 +111,30 @@ const ServicesSection = () => {
                   <p className="text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em] text-white/60">Capability #{index + 1}</p>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-semibold text-white">{service.title}</h3>
-                <p className="text-xs sm:text-sm text-white/70">{service.description}</p>
+                <p className="text-xs sm:text-xs text-white/80 italic mb-2">In simple terms: {service.simpleTerms}</p>
+                <ExpandableExplanation
+                  term="Technical Details"
+                  explanation={service.description}
+                  className="mb-4"
+                />
                 <div className="mt-6 space-y-2 text-xs font-mono text-white/60">
-                  {service.stack.map((item) => (
-                    <div key={item} className="flex items-center justify-between border-b border-white/5 py-1">
-                      <span>{item}</span>
-                      <span className="h-1 w-8 rounded-full bg-[var(--primary)] opacity-60" />
-                    </div>
-                  ))}
+                  {service.stack.map((item) => {
+                    const techTerm = item.split(" ")[0].replace("/", "");
+                    return (
+                      <div key={item} className="flex items-center justify-between border-b border-white/5 py-1">
+                        <span>
+                          {techTerm && (techTerm === "Next.js" || techTerm === "React" || techTerm === "Flutter" || techTerm === "Supabase" || techTerm === "Firebase" || techTerm === "AWS" || techTerm === "GitHub" || techTerm === "Docker" || techTerm === "ESP32" || techTerm === "BLE" || techTerm === "WiFi" || techTerm === "LoRa" || techTerm === "Vite" || techTerm === "Tailwind" || techTerm === "Three.js" || techTerm === "Framer" || techTerm === "Termux" || techTerm === "Node" || techTerm === "Grafana" || techTerm === "Expo" || techTerm === "Epilogue" || techTerm === "Satoshi" || techTerm === "Design" || techTerm === "Secure" || techTerm === "Edge" || techTerm === "IoT" || techTerm === "Telemetry") ? (
+                            <TechnicalTermTooltip term={techTerm}>
+                              {item}
+                            </TechnicalTermTooltip>
+                          ) : (
+                            item
+                          )}
+                        </span>
+                        <span className="h-1 w-8 rounded-full bg-[var(--primary)] opacity-60" />
+                      </div>
+                    );
+                  })}
                 </div>
                 <Button
                   onClick={(e) => {

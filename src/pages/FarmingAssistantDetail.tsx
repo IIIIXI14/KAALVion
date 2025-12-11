@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, ChevronLeft, ChevronRight, ActivitySquare, Droplets, Thermometer, Leaf } from "lucide-react";
+import { CheckCircle, ChevronLeft, ChevronRight, ActivitySquare, Droplets, Thermometer, Leaf, HelpCircle } from "lucide-react";
+import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
+import ExpandableExplanation from "@/components/ExpandableExplanation";
+import Glossary from "@/components/Glossary";
 
 const FarmingAssistantDetail = () => {
   const navigate = useNavigate();
@@ -56,6 +59,7 @@ const FarmingAssistantDetail = () => {
   ];
 
   const [currentFarmSlide, setCurrentFarmSlide] = useState(0);
+  const [simpleMode, setSimpleMode] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -177,15 +181,41 @@ const FarmingAssistantDetail = () => {
 
       <main className="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 space-y-12 sm:space-y-16 md:space-y-20">
         <section className="container mx-auto px-4 sm:px-6">
-          <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">Patent #AGRI-2024-002</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black max-w-4xl mb-4 sm:mb-6">
-            Smart Farming Assistant Suite
-          </h1>
-          <p className="text-base sm:text-lg text-white/85 max-w-3xl">
-            A complete automation + monitoring system that gives farmers, greenhouse operators, and agri-managers real-time
-            insights, smart irrigation, and AI-driven recommendations. It merges IoT sensors, automated control systems,
-            cloud dashboards, and multilingual apps into a high-precision farming ecosystem.
-          </p>
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="flex-1">
+              <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">Patent #AGRI-2024-002</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black max-w-4xl mb-4 sm:mb-6">
+                Smart Farming Assistant Suite
+              </h1>
+              <p className="text-base sm:text-lg text-white/85 max-w-3xl mb-4">
+                {simpleMode ? (
+                  <>
+                    A smart farming system that automatically waters your crops based on soil conditions. Sensors in the field measure moisture, temperature, and humidity. When crops need water, the system turns on irrigation automatically—even without internet. You can monitor everything from your phone and get weather-based advice in your local language.
+                  </>
+                ) : (
+                  <>
+                    A complete automation + monitoring system that gives farmers, greenhouse operators, and agri-managers real-time
+                    insights, smart irrigation, and AI-driven recommendations. It merges <TechnicalTermTooltip term="IoT">IoT sensors</TechnicalTermTooltip>, automated control systems,
+                    cloud dashboards, and multilingual apps into a high-precision farming ecosystem.
+                  </>
+                )}
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setSimpleMode(!simpleMode)}
+                className="px-4 py-2 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 transition text-sm flex items-center gap-2 min-h-[44px]"
+              >
+                <HelpCircle className="w-4 h-4" />
+                {simpleMode ? "Technical View" : "Simple View"}
+              </button>
+              <Glossary trigger={
+                <button className="px-4 py-2 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 transition text-sm min-h-[44px]">
+                  Glossary
+                </button>
+              } />
+            </div>
+          </div>
           <div className="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6">
             <p className="text-xs sm:text-sm uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white/60 mb-2">Purpose</p>
             <p className="text-sm sm:text-base text-white/80">
@@ -204,7 +234,7 @@ const FarmingAssistantDetail = () => {
                   Live farm telemetry carousel
                 </h2>
                 <p className="mt-4 max-w-2xl text-white/70">
-                  Swipe through the actual dashboards farmers use—edge relays, soil probes, and weather advisories rendered
+                  Swipe through the actual dashboards farmers use—<TechnicalTermTooltip term="Edge" customExplanation="device controllers that work independently">edge relays</TechnicalTermTooltip>, soil probes, and weather advisories rendered
                   with the same serif precision as our patent filings.
                 </p>
               </div>

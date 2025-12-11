@@ -2,11 +2,23 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Cpu, RadioTower, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
+import ExpandableExplanation from "@/components/ExpandableExplanation";
 
 const stats = [
-  { label: "Granted patents", value: "01", detail: "Edge + IoT + UX" },
+  { 
+    label: "Granted patents", 
+    value: "01", 
+    detail: "Edge + IoT + UX",
+    detailTooltip: "Devices that work offline, internet-connected sensors, and user-friendly interfaces"
+  },
   { label: "Deployment window", value: "48h", detail: "From install to live" },
-  { label: "Edge uptime", value: "99.9%", detail: "WiFi → Cloud telemetry" },
+  { 
+    label: "Edge uptime", 
+    value: "99.9%", 
+    detail: "WiFi → Cloud telemetry",
+    detailTooltip: "Data automatically sent from WiFi devices to secure online storage"
+  },
 ];
 
 const showcasePanels = [
@@ -25,9 +37,21 @@ const showcasePanels = [
 ];
 
 const badges = [
-  { icon: ShieldCheck, label: "Row-level security + biometric proof" },
-  { icon: Cpu, label: "Edge-to-cloud orchestration" },
-  { icon: RadioTower, label: "IoT hardware, firmware, and product UI" },
+  { 
+    icon: ShieldCheck, 
+    label: "Row-level security + biometric proof",
+    simple: "Each user's data is protected separately, verified by fingerprint/face"
+  },
+  { 
+    icon: Cpu, 
+    label: "Edge-to-cloud orchestration",
+    simple: "Devices work independently but sync seamlessly with online systems"
+  },
+  { 
+    icon: RadioTower, 
+    label: "IoT hardware, firmware, and product UI",
+    simple: "Smart devices, their software, and easy-to-use interfaces"
+  },
 ];
 
 const HeroSection = () => {
@@ -41,6 +65,14 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-screen overflow-hidden">
       {/* Background base */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0D1118]/80 via-[#0f141c]/60 to-[#0a0e14]/80 -z-10" />
+      
+      {/* Transparent mask shape to reveal robot - creates a window on the right side */}
+      <div 
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 700px 900px at 82% 45%, transparent 0%, transparent 35%, rgba(13, 17, 24, 0.3) 45%, rgba(13, 17, 24, 0.7) 55%, rgba(13, 17, 24, 0.95) 70%)',
+        }}
+      />
       
       {/* Animated light rays */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -90,8 +122,8 @@ const HeroSection = () => {
                 <span className="glow-gradient">others can&apos;t replicate.</span>
               </h1>
               <p className="max-w-2xl text-base sm:text-lg text-white/75">
-                KAALVION is an engineering atelier building WiFi attendance networks, smart farming meshes, and the
-                interfaces that choreograph them. Every product is edge hardware, cloud infrastructure, and human UI
+                KAALVION is an engineering atelier building <TechnicalTermTooltip term="WiFi mesh">WiFi attendance networks</TechnicalTermTooltip>, <TechnicalTermTooltip term="IoT">smart farming meshes</TechnicalTermTooltip>, and the
+                interfaces that choreograph them. Every product is <TechnicalTermTooltip term="Edge">edge hardware</TechnicalTermTooltip>, cloud infrastructure, and human UI
                 stitched together with patent-backed precision.
               </p>
             </motion.div>
@@ -134,7 +166,15 @@ const HeroSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   <div className="relative z-10 text-[0.7rem] sm:text-[0.75rem] uppercase tracking-[0.3em] sm:tracking-[0.35em] text-white/50">{stat.label}</div>
                   <div className="relative z-10 mt-2 text-2xl sm:text-3xl font-semibold text-white">{stat.value}</div>
-                  <div className="relative z-10 mt-1 text-sm sm:text-base text-white/60">{stat.detail}</div>
+                  <div className="relative z-10 mt-1 text-sm sm:text-base text-white/60">
+                    {stat.detailTooltip ? (
+                      <TechnicalTermTooltip term={stat.detail} customExplanation={stat.detailTooltip}>
+                        {stat.detail}
+                      </TechnicalTermTooltip>
+                    ) : (
+                      stat.detail
+                    )}
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -148,12 +188,19 @@ const HeroSection = () => {
               {badges.map((badge) => (
                 <div
                   key={badge.label}
-                  className="relative flex items-center gap-2 sm:gap-3 rounded-full border border-white/20 bg-white/[0.08] px-3 py-2 sm:px-4 sm:py-2 text-white/70 overflow-hidden group"
+                  className="relative flex flex-col gap-1 sm:gap-1.5 rounded-full border border-white/20 bg-white/[0.08] px-3 py-2 sm:px-4 sm:py-2 text-white/70 overflow-hidden group"
           >
                   {/* Glass shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  <badge.icon className="relative z-10 h-3.5 w-3.5 sm:h-4 sm:w-4 text-[var(--accent-foreground)] text-[var(--primary)] flex-shrink-0" />
-                  <span className="relative z-10 text-xs sm:text-sm tracking-wide">{badge.label}</span>
+                  <div className="relative z-10 flex items-center gap-2 sm:gap-3">
+                    <badge.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[var(--accent-foreground)] text-[var(--primary)] flex-shrink-0" />
+                    <span className="text-xs sm:text-sm tracking-wide">{badge.label}</span>
+                  </div>
+                  {badge.simple && (
+                    <div className="relative z-10 text-[0.65rem] sm:text-xs text-white/50 italic pl-5 sm:pl-6">
+                      {badge.simple}
+                    </div>
+                  )}
                 </div>
               ))}
             </motion.div>
@@ -193,7 +240,17 @@ const HeroSection = () => {
                         <div className="relative z-10">
                           <p className="text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[var(--primary)]">{panel.patent}</p>
                           <h3 className="mt-2 text-lg sm:text-xl font-semibold text-white">{panel.title}</h3>
-                          <p className="mt-1 text-xs sm:text-sm text-white/65">{panel.description}</p>
+                          <p className="mt-1 text-xs sm:text-sm text-white/65">
+                            {panel.title === "WiFi Attendance Platform" ? (
+                              <>
+                                <TechnicalTermTooltip term="MAC">MAC</TechnicalTermTooltip> + <TechnicalTermTooltip term="Biometric proof">biometric</TechnicalTermTooltip> <TechnicalTermTooltip term="Dual authentication">dual-auth</TechnicalTermTooltip>, zero hardware installs.
+                              </>
+                            ) : (
+                              <>
+                                <TechnicalTermTooltip term="ESP32">ESP32</TechnicalTermTooltip> <TechnicalTermTooltip term="Irrigation mesh">irrigation mesh</TechnicalTermTooltip> + weather-fed automation.
+                              </>
+                            )}
+                          </p>
                           <div className="mt-3 sm:mt-4 flex items-center gap-2 text-[0.65rem] sm:text-xs font-mono text-white/55">
                             <span className="h-1 w-6 sm:w-8 rounded-full bg-[var(--primary)]" />
                             <span className="flex items-center gap-2 text-[var(--primary)]">→ See architecture</span>
@@ -210,10 +267,14 @@ const HeroSection = () => {
                 {/* Glass shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent pointer-events-none" />
                 <div className="relative z-10">
-                  <p className="text-[0.65rem] sm:text-xs uppercase tracking-[0.4em] sm:tracking-[0.45em] text-white/60">Telemetry snapshot</p>
+                  <p className="text-[0.65rem] sm:text-xs uppercase tracking-[0.4em] sm:tracking-[0.45em] text-white/60">Live System Status</p>
                   <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 font-mono text-xs sm:text-sm text-white/70">
                     <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                      <span>EDGE → CLOUD</span>
+                      <span>
+                        <TechnicalTermTooltip term="Edge-to-cloud orchestration" customExplanation="Data transfer time from device to cloud server">
+                          EDGE → CLOUD
+                        </TechnicalTermTooltip>
+                      </span>
                       <span className="text-[var(--primary)]">532 ms</span>
                     </div>
                     <div className="flex items-center justify-between border-b border-white/5 pb-2">
@@ -221,7 +282,11 @@ const HeroSection = () => {
                       <span>1,284</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>BIOMETRIC VERIFIED</span>
+                      <span>
+                        <TechnicalTermTooltip term="Biometric proof" customExplanation="Successfully verified using fingerprint or face recognition">
+                          BIOMETRIC VERIFIED
+                        </TechnicalTermTooltip>
+                      </span>
                       <span>98.7%</span>
                     </div>
                   </div>

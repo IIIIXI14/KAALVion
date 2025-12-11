@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { CheckCircle, ChevronLeft, ChevronRight, HelpCircle } from "lucide-react";
+import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
+import ExpandableExplanation from "@/components/ExpandableExplanation";
+import Glossary from "@/components/Glossary";
 import screen1 from "@/assets/1.jpeg";
 import screen2 from "@/assets/2.jpeg";
 import screen3 from "@/assets/3.jpeg";
@@ -46,6 +49,7 @@ const WifiAttendanceDetail = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [simpleMode, setSimpleMode] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -196,15 +200,41 @@ const WifiAttendanceDetail = () => {
 
       <main className="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 space-y-12 sm:space-y-16 md:space-y-20">
         <section className="container mx-auto px-4 sm:px-6">
-          <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">Patent #WIFI-2024-001</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black max-w-3xl mb-3 sm:mb-4">
-            WiFi-Based Attendance Platform
-          </h1>
-          <p className="text-base sm:text-lg text-white/85 max-w-3xl">
-            A fully automated attendance system that authenticates individuals using WiFi proximity + registered devices,
-            eliminating hardware scanners, QR codes, and manual check-ins. Designed for organizations that demand accuracy,
-            automation, and zero-interruption workflows.
-          </p>
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="flex-1">
+              <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">Patent #WIFI-2024-001</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black max-w-3xl mb-3 sm:mb-4">
+                WiFi-Based Attendance Platform
+              </h1>
+              <p className="text-base sm:text-lg text-white/85 max-w-3xl mb-4">
+                {simpleMode ? (
+                  <>
+                    An automatic attendance system that recognizes you when you connect to office WiFi. Like a smart door that knows you&apos;re there—no scanning, no cards, no manual check-in needed. Your device&apos;s unique ID plus your fingerprint/face confirms it&apos;s really you.
+                  </>
+                ) : (
+                  <>
+                    A fully automated attendance system that authenticates individuals using <TechnicalTermTooltip term="WiFi mesh">WiFi proximity</TechnicalTermTooltip> + registered devices,
+                    eliminating hardware scanners, QR codes, and manual check-ins. Designed for organizations that demand accuracy,
+                    automation, and zero-interruption workflows.
+                  </>
+                )}
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setSimpleMode(!simpleMode)}
+                className="px-4 py-2 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 transition text-sm flex items-center gap-2 min-h-[44px]"
+              >
+                <HelpCircle className="w-4 h-4" />
+                {simpleMode ? "Technical View" : "Simple View"}
+              </button>
+              <Glossary trigger={
+                <button className="px-4 py-2 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 transition text-sm min-h-[44px]">
+                  Glossary
+                </button>
+              } />
+            </div>
+          </div>
           <div className="mt-6 sm:mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-4 sm:p-5">
               <p className="text-xs sm:text-sm uppercase tracking-[0.3em] sm:tracking-[0.35em] text-white/60 mb-2">Platform Overview</p>
@@ -215,7 +245,15 @@ const WifiAttendanceDetail = () => {
             </div>
             <div className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-4 sm:p-5">
               <p className="text-xs sm:text-sm uppercase tracking-[0.3em] sm:tracking-[0.35em] text-white/60 mb-2">Hands-Free</p>
-              <p className="text-sm sm:text-base text-white/80">MAC + biometric checks eliminate spoofing and keep the process invisible to users.</p>
+              <p className="text-sm sm:text-base text-white/80">
+                {simpleMode ? (
+                  "Your device's unique ID plus fingerprint/face recognition prevents cheating and works automatically—you don't need to do anything."
+                ) : (
+                  <>
+                    <TechnicalTermTooltip term="MAC">MAC</TechnicalTermTooltip> + <TechnicalTermTooltip term="Biometric proof">biometric</TechnicalTermTooltip> checks eliminate spoofing and keep the process invisible to users.
+                  </>
+                )}
+              </p>
             </div>
             <div className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/5 p-4 sm:p-5">
               <p className="text-xs sm:text-sm uppercase tracking-[0.3em] sm:tracking-[0.35em] text-white/60 mb-2">Dashboard Ready</p>
