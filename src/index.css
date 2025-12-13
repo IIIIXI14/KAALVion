@@ -455,3 +455,75 @@ All colors MUST be HSL.
     transform: translate(-50%, -50%) scale(1.1);
   }
 }
+
+/* Loader Component Styles */
+.loader {
+  overflow: hidden;
+}
+
+.loader #browser {
+  overflow: hidden;
+}
+
+.loader .grid-line {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 0.5;
+}
+
+.loader .browser-frame {
+  fill: #0a0e13;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
+}
+
+.loader .browser-top {
+  fill: #1a1a1a;
+}
+
+.loader .loading-text {
+  font-family: 'Satoshi', 'Epilogue', system-ui, sans-serif;
+  font-size: 14px;
+  fill: #e4e4e4;
+  font-weight: 500;
+}
+
+.loader .skeleton {
+  fill: #2d2d2d;
+  rx: 4;
+  ry: 4;
+  animation: skeletonPulse 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.02));
+}
+
+@keyframes skeletonPulse {
+  0% {
+    fill: #2d2d2d;
+  }
+  50% {
+    fill: #505050;
+  }
+  100% {
+    fill: #2d2d2d;
+  }
+}
+
+.loader .trace-flow {
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 120 600;
+  stroke-dashoffset: 720;
+  animation: traceFlow 5s linear infinite;
+  opacity: 0.95;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px currentColor) blur(0.5px);
+}
+
+@keyframes traceFlow {
+  from {
+    stroke-dashoffset: 720;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

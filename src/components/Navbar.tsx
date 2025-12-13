@@ -62,6 +62,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             {[
               { label: "Home", id: "hero" },
+              { label: "About", id: "about" },
               { label: "Services", id: "services" },
               { label: "Patents", id: "patents" },
               { label: "Testimonials", id: "testimonials" },

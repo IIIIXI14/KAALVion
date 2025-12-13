@@ -11,6 +11,7 @@ interface MobileMenuProps {
 const MobileMenu = ({ isOpen, onClose, scrollToSection }: MobileMenuProps) => {
   const navItems = [
     { label: "Home", id: "hero" },
+    { label: "About", id: "about" },
     { label: "Services", id: "services" },
     { label: "Patents", id: "patents" },
     { label: "Testimonials", id: "testimonials" },

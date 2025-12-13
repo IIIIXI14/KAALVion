@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/clerk-react";
+import FullScreenLoader from "./FullScreenLoader";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -17,14 +18,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   }, [isLoaded, isSignedIn, navigate]);
 
   if (!isLoaded) {
-    return (
-      <div className="min-h-screen bg-[#0A0E13] text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[var(--primary)] border-r-transparent"></div>
-          <p className="mt-4 text-white/70">Loading...</p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader message="Loading authentication..." size="md" />;
   }
 
   if (!isSignedIn) {
