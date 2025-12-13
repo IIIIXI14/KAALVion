@@ -58,7 +58,7 @@ const NetworkAwareLoader: React.FC<NetworkAwareLoaderProps> = ({
             ? "Slow connection detected. Loading..."
             : "Loading..."
         }
-        size="md"
+        size="lg"
       />
     );
   }

@@ -18,7 +18,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   }, [isLoaded, isSignedIn, navigate]);
 
   if (!isLoaded) {
-    return <FullScreenLoader message="Loading authentication..." size="md" />;
+    return <FullScreenLoader message="Loading authentication..." size="lg" />;
   }
 
   if (!isSignedIn) {
