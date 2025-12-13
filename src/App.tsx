@@ -37,11 +37,11 @@ const App = () => (
       <Sonner />
       <ClerkSupabaseSync />
       <ErrorBoundary>
-        <BrowserRouter>
+      <BrowserRouter>
           <RouteTracker />
           <Suspense fallback={<LoadingFallback />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
+        <Routes>
+          <Route path="/" element={<Index />} />
               <Route
                 path="/sign-in"
                 element={
@@ -58,12 +58,12 @@ const App = () => (
                   </Suspense>
                 }
               />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
                     <Suspense fallback={<LoadingFallback />}>
-                      <Dashboard />
+                <Dashboard />
                     </Suspense>
                   </ProtectedRoute>
                 }
@@ -75,9 +75,9 @@ const App = () => (
                     <Suspense fallback={<LoadingFallback />}>
                       <ProjectStatus />
                     </Suspense>
-                  </ProtectedRoute>
-                }
-              />
+              </ProtectedRoute>
+            }
+          />
               <Route
                 path="/case-studies/:id"
                 element={
@@ -102,7 +102,7 @@ const App = () => (
                   </Suspense>
                 }
               />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route
                 path="*"
                 element={
@@ -111,9 +111,9 @@ const App = () => (
                   </Suspense>
                 }
               />
-            </Routes>
+        </Routes>
           </Suspense>
-        </BrowserRouter>
+      </BrowserRouter>
       </ErrorBoundary>
     </TooltipProvider>
   </QueryClientProvider>
