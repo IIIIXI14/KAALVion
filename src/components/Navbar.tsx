@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
+import { SignedIn } from "@clerk/clerk-react";
 import AuthButtons from "./AuthButtons";
 import MobileMenu from "./MobileMenu";
 import logoIcon from "@/assets/KaalVion_DarkLogo_img.png";
-import logoName from "@/assets/KaalVion_DarkLogo_name .png";
+import logoName from "@/assets/KaalVion_DarkLogo_name.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -43,6 +44,13 @@ const Navbar = () => {
 
   return (
     <>
+    {/* Skip to content link for accessibility */}
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--primary)] focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:ring-offset-[#070812]"
+    >
+      Skip to main content
+    </a>
     <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className="fixed top-4 left-0 right-0 z-50 pointer-events-none">
         <div className="container mx-auto px-4 sm:px-6">
         <div
@@ -61,22 +69,31 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-8">
             {[
-              { label: "Home", id: "hero" },
-              { label: "About", id: "about" },
-              { label: "Services", id: "services" },
-              { label: "Patents", id: "patents" },
-              { label: "Testimonials", id: "testimonials" },
-              { label: "Contact", id: "contact" },
+              { label: "Home", id: "hero", isRoute: false },
+              { label: "About", id: "about", isRoute: false },
+              { label: "Services", id: "services", isRoute: false },
+              { label: "Patents", id: "patents", isRoute: false },
+              { label: "Testimonials", id: "testimonials", isRoute: false },
+              { label: "Contact", id: "contact", isRoute: false },
             ].map((item) => (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => item.isRoute ? navigate(item.id) : scrollToSection(item.id)}
                 className="relative text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)]"
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-[var(--primary)] transition-transform duration-300 group-hover:scale-x-100" />
               </button>
             ))}
+            <SignedIn>
+              <button
+                onClick={() => navigate("/projects")}
+                className="relative text-sm font-semibold uppercase tracking-[0.25em] text-white/70 transition duration-300 hover:text-[var(--primary)]"
+              >
+                My Projects
+                <span className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-[var(--primary)] transition-transform duration-300 group-hover:scale-x-100" />
+              </button>
+            </SignedIn>
           </div>
 
             <div className="hidden md:block">

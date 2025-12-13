@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { Wifi, Sprout } from "lucide-react";
 import wifiAttendance from "@/assets/wifi-attendance.jpg";
 import smartFarming from "@/assets/smart-farming.jpg";
-import logoName from "@/assets/KaalVion_DarkLogo_name .png";
+import logoName from "@/assets/KaalVion_DarkLogo_name.png";
 import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
 import ExpandableExplanation from "@/components/ExpandableExplanation";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const patents = [
   {
@@ -63,7 +64,7 @@ const PatentsSection = () => {
         >
           <p className="mb-3 sm:mb-4 text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.5em] sm:tracking-[0.6em] text-white/60">Granted patents</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold text-white">
-            Systems we <span className="glow-gradient">own</span> the blueprints for.
+            Systems we <AuroraText>own</AuroraText> the blueprints for.
           </h2>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-white/70">
             Each product is an engineered stack—IoT hardware, firmware, cloud orchestration, and interface choreography—
@@ -164,7 +165,7 @@ const PatentsSection = () => {
                   <div className="pointer-events-none absolute -inset-3 sm:-inset-6 rounded-[20px] sm:rounded-[28px] border border-white/5 opacity-60" />
                   <div className="relative rounded-[20px] sm:rounded-[28px] border border-white/8 bg-black/40 p-4 sm:p-6">
                     <div className="relative overflow-hidden rounded-[16px] sm:rounded-[24px] border border-white/10">
-                      <img src={patent.image} alt={patent.title} className="h-full w-full object-cover" />
+                      <img src={patent.image} alt={patent.title} className="h-full w-full object-cover" loading="lazy" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-3 right-3 sm:top-4 sm:right-4 rounded-full border border-white/20 bg-black/50 px-3 py-1 sm:px-4 sm:py-1 flex items-center h-5 sm:h-6">
                         {index === 0 ? (

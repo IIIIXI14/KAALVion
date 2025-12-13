@@ -4,6 +4,7 @@ import { Cpu, RadioTower, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
 import ExpandableExplanation from "@/components/ExpandableExplanation";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const stats = [
   { 
@@ -119,7 +120,7 @@ const HeroSection = () => {
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-semibold leading-tight text-white">
                 We engineer patented systems{" "}
-                <span className="glow-gradient">others can&apos;t replicate.</span>
+                <AuroraText>others can&apos;t replicate.</AuroraText>
               </h1>
               <p className="max-w-2xl text-base sm:text-lg text-white/75">
                 KAALVION is an engineering atelier building <TechnicalTermTooltip term="WiFi mesh">WiFi attendance networks</TechnicalTermTooltip>, <TechnicalTermTooltip term="IoT">smart farming meshes</TechnicalTermTooltip>, and the

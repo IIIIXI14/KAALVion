@@ -1,13 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { AuroraText } from "@/registry/magicui/aurora-text";
+import logger from "@/lib/logger";
 
 const NotFound = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    logger.error("404 Error: User attempted to access non-existent route:", location.pathname);
   }, [location.pathname]);
 
   return (
@@ -28,9 +30,9 @@ const NotFound = () => {
 
           <h1 className="mt-8 text-5xl font-semibold leading-tight text-white sm:text-6xl">
             404{" "}
-            <span className="glow-gradient">
+            <AuroraText>
               Signal lost.
-            </span>
+            </AuroraText>
           </h1>
 
           <p className="mt-4 text-lg text-white/70">
@@ -44,7 +46,7 @@ const NotFound = () => {
               className="rounded-full border border-[rgba(236,68,59,0.65)] bg-[var(--primary)] px-8 py-6 text-[var(--primary-foreground)] font-semibold tracking-wide shadow-[0_16px_50px_rgba(236,68,59,0.55)] hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_20px_60px_rgba(255,111,100,0.62)] transition"
               onClick={() => navigate("/")}
             >
-              Return to Dashboard
+              Return to Home
             </Button>
             <Button
               variant="outline"

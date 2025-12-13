@@ -1,5 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { SignedIn } from "@clerk/clerk-react";
 import AuthButtons from "./AuthButtons";
 
 interface MobileMenuProps {
@@ -9,17 +11,22 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ isOpen, onClose, scrollToSection }: MobileMenuProps) => {
+  const navigate = useNavigate();
   const navItems = [
-    { label: "Home", id: "hero" },
-    { label: "About", id: "about" },
-    { label: "Services", id: "services" },
-    { label: "Patents", id: "patents" },
-    { label: "Testimonials", id: "testimonials" },
-    { label: "Contact", id: "contact" },
+    { label: "Home", id: "hero", isRoute: false },
+    { label: "About", id: "about", isRoute: false },
+    { label: "Services", id: "services", isRoute: false },
+    { label: "Patents", id: "patents", isRoute: false },
+    { label: "Testimonials", id: "testimonials", isRoute: false },
+    { label: "Contact", id: "contact", isRoute: false },
   ];
 
-  const handleNavClick = (id: string) => {
-    scrollToSection(id);
+  const handleNavClick = (id: string, isRoute: boolean = false) => {
+    if (isRoute) {
+      navigate(id);
+    } else {
+      scrollToSection(id);
+    }
     onClose();
   };
 
@@ -69,13 +76,27 @@ const MobileMenu = ({ isOpen, onClose, scrollToSection }: MobileMenuProps) => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <button
-                        onClick={() => handleNavClick(item.id)}
+                        onClick={() => handleNavClick(item.id, item.isRoute)}
                         className="w-full text-left px-4 py-4 rounded-xl text-base font-semibold uppercase tracking-[0.15em] text-white/70 hover:text-[var(--primary)] hover:bg-white/5 transition-all duration-300 min-h-[44px] flex items-center"
                       >
                         {item.label}
                       </button>
                     </motion.li>
                   ))}
+                  <SignedIn>
+                    <motion.li
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: navItems.length * 0.1 }}
+                    >
+                      <button
+                        onClick={() => handleNavClick("/projects", true)}
+                        className="w-full text-left px-4 py-4 rounded-xl text-base font-semibold uppercase tracking-[0.15em] text-white/70 hover:text-[var(--primary)] hover:bg-white/5 transition-all duration-300 min-h-[44px] flex items-center"
+                      >
+                        My Projects
+                      </button>
+                    </motion.li>
+                  </SignedIn>
                 </ul>
               </nav>
 

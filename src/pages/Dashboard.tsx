@@ -2,6 +2,7 @@ import { useUser } from "@clerk/clerk-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const Dashboard = () => {
   const { user } = useUser();
@@ -21,8 +22,8 @@ const Dashboard = () => {
             className="max-w-4xl mx-auto"
           >
             <div className="rounded-[28px] border border-white/10 bg-[rgba(10,14,19,0.95)] p-8 shadow-[0_25px_70px_rgba(0,0,0,0.65)]">
-              <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[var(--primary)] to-[#666666] bg-clip-text text-transparent">
-                Dashboard
+              <h1 className="text-4xl font-black mb-4">
+                <AuroraText>Dashboard</AuroraText>
               </h1>
               <p className="text-white/70 mb-6">Welcome back, {user?.firstName || user?.emailAddresses[0]?.emailAddress}!</p>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-6">

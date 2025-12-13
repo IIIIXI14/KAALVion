@@ -4,13 +4,42 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import { dark } from "@clerk/themes";
 import App from "./App.tsx";
 import "./index.css";
+import logger from "./lib/logger";
+import { initAnalytics } from "./lib/analytics";
+import { initSentry } from "./lib/sentry";
+import { validateEnvVars } from "./lib/env";
+
+// Validate environment variables
+const envValidation = validateEnvVars();
+if (!envValidation.isValid) {
+  logger.error("Application startup failed due to missing required environment variables.");
+  // Continue anyway - let the app handle missing vars gracefully
+}
+
+// Initialize error tracking and analytics (after validation)
+initSentry();
+initAnalytics();
+
+// Register service worker
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        logger.log("Service Worker registered:", registration);
+      })
+      .catch((error) => {
+        logger.error("Service Worker registration failed:", error);
+      });
+  });
+}
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 // Warn in development, but allow app to load in production
-if (!PUBLISHABLE_KEY && import.meta.env.DEV) {
-  console.warn("⚠️ Missing Clerk Publishable Key. Please set VITE_CLERK_PUBLISHABLE_KEY in your .env.local file.");
-  console.warn("Authentication features will be disabled.");
+if (!PUBLISHABLE_KEY) {
+  logger.warn("⚠️ Missing Clerk Publishable Key. Please set VITE_CLERK_PUBLISHABLE_KEY in your .env.local file.");
+  logger.warn("Authentication features will be disabled.");
 }
 
 const AppWrapper = () => {

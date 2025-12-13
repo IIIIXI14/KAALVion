@@ -6,6 +6,7 @@ import ServiceModal from "./ServiceModal";
 import type { ServiceData } from "@/types/project";
 import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
 import ExpandableExplanation from "@/components/ExpandableExplanation";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const services = [
   {
@@ -86,7 +87,7 @@ const ServicesSection = () => {
         >
           <p className="mb-3 sm:mb-4 text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.45em] sm:tracking-[0.55em] text-white/60">KAALVION STACK</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white">
-            Full-spectrum engineering, orchestrated like an <span className="glow-gradient">industrial console</span>.
+            Full-spectrum engineering, orchestrated like an <AuroraText>industrial console</AuroraText>.
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-white/70">
             Every capability plugs into our <TechnicalTermTooltip term="Telemetry">telemetry layer</TechnicalTermTooltip>—<TechnicalTermTooltip term="IoT">IoT</TechnicalTermTooltip>, cloud, and interface teams operating as a single system.

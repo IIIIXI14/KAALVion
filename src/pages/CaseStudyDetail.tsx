@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, Code, CheckCircle2 } from "lucide-react";
 import { caseStudies } from "@/data/caseStudies";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const CaseStudyDetail = () => {
   const { id } = useParams();
@@ -60,7 +61,7 @@ const CaseStudyDetail = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {caseStudy.metrics.map((metric) => (
                 <div key={metric.label} className="glass rounded-2xl p-6 text-center">
-                  <div className="text-3xl font-bold text-gradient mb-2">{metric.value}</div>
+                  <div className="text-3xl font-bold mb-2"><AuroraText>{metric.value}</AuroraText></div>
                   <div className="text-sm text-muted-foreground">{metric.label}</div>
                 </div>
               ))}
@@ -174,6 +175,7 @@ const CaseStudyDetail = () => {
                       src={image.url}
                       alt={image.caption}
                       className="w-full h-full object-cover opacity-50"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-6">

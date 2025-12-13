@@ -10,6 +10,7 @@ import ProcessSection from "@/components/ProcessSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import BackgroundScene from "@/components/BackgroundScene";
+import FirstVisitWelcome from "@/components/FirstVisitWelcome";
 
 const Index = () => {
   useEffect(() => {
@@ -24,9 +25,10 @@ const Index = () => {
   return (
     <div className="min-h-screen relative bg-transparent">
       <BackgroundScene />
+      <FirstVisitWelcome />
       <div className="relative z-10">
         <Navbar />
-        <main className="space-y-16 sm:space-y-20 md:space-y-28 lg:space-y-32 pt-10">
+        <main id="main-content" className="space-y-16 sm:space-y-20 md:space-y-28 lg:space-y-32 pt-10">
           <HeroSection />
           <AboutSection />
           <ServicesSection />

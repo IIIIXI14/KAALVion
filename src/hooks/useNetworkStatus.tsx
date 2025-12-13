@@ -7,6 +7,20 @@ interface NetworkStatus {
   downlink?: number;
 }
 
+// Network Information API types (not fully standardized)
+interface NetworkInformation extends EventTarget {
+  effectiveType?: string;
+  downlink?: number;
+  addEventListener(type: "change", listener: () => void): void;
+  removeEventListener(type: "change", listener: () => void): void;
+}
+
+interface NavigatorWithConnection extends Navigator {
+  connection?: NetworkInformation;
+  mozConnection?: NetworkInformation;
+  webkitConnection?: NetworkInformation;
+}
+
 export const useNetworkStatus = (): NetworkStatus => {
   const [networkStatus, setNetworkStatus] = useState<NetworkStatus>({
     isOnline: navigator.onLine,
@@ -52,9 +66,8 @@ export const useNetworkStatus = (): NetworkStatus => {
     window.addEventListener("offline", updateNetworkStatus);
 
     // Listen for connection changes
-    const connection = (navigator as any).connection ||
-      (navigator as any).mozConnection ||
-      (navigator as any).webkitConnection;
+    const nav = navigator as NavigatorWithConnection;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
 
     if (connection) {
       connection.addEventListener("change", updateNetworkStatus);

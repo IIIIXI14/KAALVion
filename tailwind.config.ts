@@ -120,6 +120,10 @@ export default {
           "0%, 100%": { opacity: "0.15", transform: "translate(-50%, -50%) scale(1)" },
           "50%": { opacity: "0.25", transform: "translate(-50%, -50%) scale(1.1)" },
         },
+        "aurora": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -134,6 +138,7 @@ export default {
         "float-orb-1": "float-orb-1 20s ease-in-out infinite",
         "float-orb-2": "float-orb-2 25s ease-in-out infinite 5s",
         "pulse-glow": "pulse-glow 6s ease-in-out infinite",
+        "aurora": "aurora 7s ease-in-out infinite",
       },
       fontFamily: {
         sans: ['Satoshi', 'system-ui', 'sans-serif'],

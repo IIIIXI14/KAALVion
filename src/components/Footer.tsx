@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Linkedin, Instagram, Mail, MapPin, Phone, Github } from "lucide-react";
 import logoIcon from "@/assets/KaalVion_DarkLogo_img.png";
-import logoName from "@/assets/KaalVion_DarkLogo_name .png";
+import logoName from "@/assets/KaalVion_DarkLogo_name.png";
 import Glossary from "@/components/Glossary";
 
 const Footer = () => {

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, ChevronLeft, ChevronRight, HelpCircle } from "lucide-react";
+import { CheckCircle, HelpCircle } from "lucide-react";
 import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
 import ExpandableExplanation from "@/components/ExpandableExplanation";
 import Glossary from "@/components/Glossary";
+import { Iphone } from "@/registry/magicui/iphone";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import screen1 from "@/assets/1.jpeg";
 import screen2 from "@/assets/2.jpeg";
 import screen3 from "@/assets/3.jpeg";
@@ -48,16 +50,100 @@ const WifiAttendanceDetail = () => {
     { src: screen10, caption: "Further interface screen" },
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [simpleMode, setSimpleMode] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % gallery.length);
-    }, 4500);
-
-    return () => clearInterval(interval);
-  }, [gallery.length]);
+  const stickyScrollContent = [
+    {
+      title: "Login & Onboarding",
+      description: "Seamless authentication experience with secure login and intuitive onboarding flow. Users can quickly register their devices and link their biometric credentials for dual-layer verification.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen1} alt="Login & Onboarding screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Real-time Attendance Status",
+      description: "Live attendance tracking with instant updates. View your current status, check-in/check-out times, and see real-time notifications as you enter or leave the WiFi zone.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen2} alt="Real-time Attendance Status screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Account & Device Profile",
+      description: "Manage your account settings and registered devices. Link multiple devices, update biometric credentials, and configure your attendance preferences all in one place.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen3} alt="Account & Device Profile screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Manual Attendance Control",
+      description: "Admin controls for manual attendance override when needed. Handle exceptions, mark attendance manually, and manage special cases with full audit trail.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen4} alt="Manual Attendance Control screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Biometric Verification Dashboard",
+      description: "Comprehensive dashboard for biometric verification status. Track verification attempts, view success rates, and monitor security metrics in real-time.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen5} alt="Biometric Verification Dashboard screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "WiFi & Timeframe Configuration",
+      description: "Configure authorized WiFi networks and set attendance timeframes. Define work hours, break periods, and location-specific rules for accurate attendance tracking.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen6} alt="WiFi & Timeframe Configuration screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Attendance Reports Overview",
+      description: "Generate comprehensive attendance reports with detailed analytics. Export data, view trends, and analyze patterns to optimize workforce management.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen7} alt="Attendance Reports Overview screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Detailed Timeframe Analytics",
+      description: "Deep dive into timeframe-specific analytics. Analyze attendance patterns by time periods, identify trends, and make data-driven decisions for your organization.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen8} alt="Detailed Timeframe Analytics screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Admin/Employee Context",
+      description: "Role-based interface for both administrators and employees. Admins get full control panels while employees see personalized dashboards with relevant information.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen9} alt="Admin/Employee Context screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Advanced Interface Features",
+      description: "Additional interface screens showcasing advanced features, settings, and customization options. Explore the full range of capabilities available in the platform.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={screen10} alt="Advanced Interface Features screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+  ];
 
   const pillars = [
     "Hands-free attendance using WiFi device detection",
@@ -264,63 +350,16 @@ const WifiAttendanceDetail = () => {
 
         <section className="container mx-auto px-4 sm:px-6">
           <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] bg-gradient-to-r from-[#2a3470] via-[#1b1f3f] to-[#090b16] border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden relative shadow-[0_20px_60px_rgba(10,15,35,0.65)]">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 md:gap-10 mb-6 sm:mb-8 md:mb-10">
-              <div>
+            <div className="mb-6 sm:mb-8 md:mb-10">
                 <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-2">Product UI</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">Mobile Experience Carousel</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">Mobile Experience</h2>
                 <p className="text-sm sm:text-base text-white/80 max-w-2xl">
                   Explore the actual KAALVION attendance app screens — from login to biometric verification dashboards —
-                  presented in a smooth, 2025-worthy carousel. Swipe or use the controls to move through each flow.
-                </p>
-              </div>
-              <div className="flex gap-2 sm:gap-3">
-                <button
-                  aria-label="Previous screen"
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 text-white hover:bg-white/10 transition min-h-[44px]"
-                  onClick={() =>
-                    setCurrentSlide((prev) => (prev - 1 + gallery.length) % gallery.length)
-                  }
-                >
-                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
-                </button>
-                <button
-                  aria-label="Next screen"
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 text-white hover:bg-white/10 transition min-h-[44px]"
-                  onClick={() => setCurrentSlide((prev) => (prev + 1) % gallery.length)}
-                >
-                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 mx-auto" />
-                </button>
-              </div>
+                presented in an interactive scroll experience. Scroll to see each screen with detailed descriptions.
+              </p>
             </div>
 
-            <div className="relative overflow-hidden">
-              <div
-                className="flex transition-transform duration-700 ease-[cubic-bezier(.4,0,.2,1)]"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {gallery.map((item, index) => (
-                  <div key={item.src + index} className="min-w-full flex justify-center">
-                    <div className="w-full max-w-[280px] sm:max-w-[320px] bg-white/10 border border-white/15 rounded-[32px] sm:rounded-[40px] p-4 sm:p-6 md:p-8">
-                      <img src={item.src} alt={item.caption} className="w-full h-auto object-contain" />
-                      <p className="text-center text-white/80 text-xs sm:text-sm mt-3 sm:mt-4">{item.caption}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex justify-center gap-2 mt-6 sm:mt-8">
-                {gallery.map((_, index) => (
-                  <button
-                    key={index}
-                    aria-label={`Go to slide ${index + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center ${
-                      currentSlide === index ? "bg-white w-8" : "bg-white/30 w-2"
-                    }`}
-                    onClick={() => setCurrentSlide(index)}
-                  />
-                ))}
-              </div>
-            </div>
+            <StickyScroll content={stickyScrollContent} />
           </div>
         </section>
 

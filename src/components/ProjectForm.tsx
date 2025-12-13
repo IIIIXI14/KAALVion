@@ -10,6 +10,11 @@ import { submitProject } from "@/lib/submitProject";
 import { useState, useMemo } from "react";
 import { Loader2 } from "lucide-react";
 import { getProjectTypesForService, getProjectTypeSchema } from "@/lib/serviceProjectTypes";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import { Confetti } from "@/components/ui/confetti";
+import { trackFormSubmission } from "@/lib/analytics";
+import { isRateLimited, recordSubmission, getTimeUntilReset } from "@/lib/rateLimiter";
 
 interface ProjectFormProps {
   serviceType: string;
@@ -46,6 +51,9 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
   type ProjectFormData = z.infer<typeof projectFormSchema>;
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const { user } = useUser();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -63,6 +71,17 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
   });
 
   const onSubmit = async (data: ProjectFormData) => {
+    // Check rate limit
+    if (isRateLimited("project_form")) {
+      const minutesUntilReset = getTimeUntilReset("project_form");
+      toast({
+        title: "Rate Limit Exceeded",
+        description: `You've submitted too many projects. Please wait ${minutesUntilReset} minute${minutesUntilReset !== 1 ? 's' : ''} before submitting again.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const deadlineDate = new Date(data.deadline);
@@ -74,36 +93,53 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
         ? data.techStack.split(',').map((s) => s.trim()).filter(Boolean)
         : undefined;
 
-      const result = await submitProject({
-        serviceType,
-        isStudent: false,
-        projectName: data.projectName,
-        company: data.company,
-        email: data.email,
-        phone: data.phone,
-        description: data.description,
-        keyFeatures: data.keyFeatures,
-        projectType: data.projectType,
-        deadline: deadlineDate.toISOString(),
-        budget: data.budget,
-        urgency: data.urgency,
-        teamSize: data.teamSize,
-        techStack: techStackArray,
-        integrations: data.integrations,
-        requirements: data.requirements,
-        timelinePhases: data.timelinePhases,
-      });
+      const result = await submitProject(
+        {
+          serviceType,
+          isStudent: false,
+          projectName: data.projectName,
+          company: data.company,
+          email: data.email,
+          phone: data.phone,
+          description: data.description,
+          keyFeatures: data.keyFeatures,
+          projectType: data.projectType,
+          deadline: deadlineDate.toISOString(),
+          budget: data.budget,
+          urgency: data.urgency,
+          teamSize: data.teamSize,
+          techStack: techStackArray,
+          integrations: data.integrations,
+          requirements: data.requirements,
+          timelinePhases: data.timelinePhases,
+        },
+        user?.id || null
+      );
 
       if (result.success) {
+        // Record submission for rate limiting
+        recordSubmission("project_form");
+        
+        // Track form submission
+        trackFormSubmission("project_form", true);
+        
+        // Trigger confetti animation
+        setShowConfetti(true);
+        
         toast({
-          title: "Project Submitted!",
-          description: "Redirecting to WhatsApp... Your project details have been saved.",
+          title: "Project Submitted Successfully!",
+          description: "Your project has been saved. Redirecting to project status...",
         });
-        // Small delay to show toast before closing modal
+        
+        // Close modal first
+        onSuccess();
+        
+        // Navigate to projects page after confetti animation
         setTimeout(() => {
-          onSuccess();
-        }, 1500);
+          navigate("/projects");
+        }, 3000);
       } else {
+        trackFormSubmission("project_form", false);
         toast({
           title: "Submission Failed",
           description: result.error || "Please try again later.",
@@ -122,7 +158,9 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <>
+      <Confetti trigger={showConfetti} duration={3000} />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-semibold mb-2 text-white/90">
@@ -217,7 +255,7 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
           <label className="block text-sm font-semibold mb-2 text-white/90">
             Project Type <span className="text-[var(--primary)]">*</span>
           </label>
-          <Select onValueChange={(value) => setValue("projectType", value as any, { shouldValidate: true })}>
+          <Select onValueChange={(value) => setValue("projectType", value as ProjectFormData["projectType"], { shouldValidate: true })}>
             <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl focus:border-[var(--primary)]">
               <SelectValue placeholder="Select type" />
             </SelectTrigger>
@@ -255,7 +293,7 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
           <label className="block text-sm font-semibold mb-2 text-white/90">
             Budget Range <span className="text-[var(--primary)]">*</span>
           </label>
-          <Select onValueChange={(value) => setValue("budget", value as any, { shouldValidate: true })}>
+          <Select onValueChange={(value) => setValue("budget", value as ProjectFormData["budget"], { shouldValidate: true })}>
             <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl focus:border-[var(--primary)]">
               <SelectValue placeholder="Select budget" />
             </SelectTrigger>
@@ -275,7 +313,7 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
           <label className="block text-sm font-semibold mb-2 text-white/90">
             Urgency Level <span className="text-[var(--primary)]">*</span>
           </label>
-          <Select onValueChange={(value) => setValue("urgency", value as any, { shouldValidate: true })}>
+          <Select onValueChange={(value) => setValue("urgency", value as ProjectFormData["urgency"], { shouldValidate: true })}>
             <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl focus:border-[var(--primary)]">
               <SelectValue placeholder="Select urgency" />
             </SelectTrigger>
@@ -370,6 +408,7 @@ const ProjectForm = ({ serviceType, onSuccess }: ProjectFormProps) => {
         </Button>
       </div>
     </form>
+    </>
   );
 };
 

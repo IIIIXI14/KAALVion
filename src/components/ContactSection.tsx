@@ -9,12 +9,18 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
 import { redirectToWhatsApp } from "@/lib/submitProject";
+import logger from "@/lib/logger";
+import type { ContactSubmissionData } from "@/types/submission";
+import { trackFormSubmission } from "@/lib/analytics";
 import contactIllustration from "@/assets/contact-illustration.jpg";
+import { AuroraText } from "@/registry/magicui/aurora-text";
+import { useUser } from "@clerk/clerk-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const { toast } = useToast();
+  const { user } = useUser();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,30 +31,50 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Check rate limit
+    if (isRateLimited("contact_form")) {
+      const minutesUntilReset = getTimeUntilReset("contact_form");
+      toast({
+        title: "Rate Limit Exceeded",
+        description: `You've sent too many messages. Please wait ${minutesUntilReset} minute${minutesUntilReset !== 1 ? 's' : ''} before sending again.`,
+        variant: "destructive",
+      });
+      return;
+    }
+    
     try {
       // Format WhatsApp message
       const whatsappMessage = `*New Contact Form Inquiry*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Project Type:* ${formData.projectType || 'Not specified'}\n\n*Message:*\n${formData.message}`;
 
       // Save to Supabase if configured
       if (supabase) {
+        const submissionData: ContactSubmissionData = {
+          name: formData.name,
+          email: formData.email,
+          project_type: formData.projectType || null,
+          message: formData.message,
+          submitted_at: new Date().toISOString(),
+          status: 'pending',
+          user_id: user?.id || null,
+        };
+
         const { error } = await supabase
           .from('contact_submissions')
-          .insert([{
-            name: formData.name,
-            email: formData.email,
-            project_type: formData.projectType || null,
-            message: formData.message,
-            submitted_at: new Date().toISOString(),
-            status: 'pending',
-          }]);
+          .insert([submissionData]);
 
         if (error) {
-          console.error("Supabase error:", error);
+          logger.error("Supabase error:", error);
           // Continue to WhatsApp redirect even if Supabase fails
         }
       } else {
-        console.warn("Supabase not configured. Skipping database save.");
+        logger.warn("Supabase not configured. Skipping database save.");
       }
+
+      // Record submission for rate limiting
+      recordSubmission("contact_form");
+      
+      // Track form submission
+      trackFormSubmission("contact_form", true);
 
       // Redirect to WhatsApp
       redirectToWhatsApp(whatsappMessage);
@@ -61,7 +87,8 @@ const ContactSection = () => {
       // Reset form
       setFormData({ name: "", email: "", projectType: "", message: "" });
     } catch (error) {
-      console.error("Submission error:", error);
+      logger.error("Submission error:", error);
+      trackFormSubmission("contact_form", false);
       toast({
         title: "Error",
         description: "Failed to submit. Please try again.",
@@ -80,7 +107,7 @@ const ContactSection = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-            Get in <span className="glow-gradient">Touch</span>
+            Get in <AuroraText>Touch</AuroraText>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             Ready to bring your project to life? Let's talk.
@@ -156,12 +183,8 @@ const ContactSection = () => {
                   className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground hover:text-primary transition-smooth min-h-[44px]"
                 >
                   <Mail className="w-5 h-5 flex-shrink-0" />
-                  <span className="break-all">hello@kaalvion.com</span>
+                  <span className="break-all">kaalvion@gmail.com</span>
                 </a>
-                <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground min-h-[44px]">
-                  <Phone className="w-5 h-5 flex-shrink-0" />
-                  <span>+1 (555) 123-4567</span>
-                </div>
                 <a
                   href="tel:+917718850412"
                   className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground min-h-[44px] hover:text-primary transition-smooth"
@@ -171,7 +194,7 @@ const ContactSection = () => {
                 </a>
                 <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground min-h-[44px]">
                   <MapPin className="w-5 h-5 flex-shrink-0" />
-                  <span>San Francisco, CA</span>
+                  <span>Mumbai, Maharashtra, IndiaS</span>
                 </div>
               </div>
             </div>
@@ -185,6 +208,7 @@ const ContactSection = () => {
             <img
               src={contactIllustration}
               alt="Contact Us"
+              loading="lazy"
               className="w-full rounded-xl sm:rounded-2xl shadow-none"
             />
           </motion.div>

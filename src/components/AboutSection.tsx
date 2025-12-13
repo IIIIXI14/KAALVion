@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Zap, Shield, Users, Code, Rocket } from "lucide-react";
 import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const values = [
   {
@@ -60,7 +61,7 @@ const AboutSection = () => {
             ABOUT KAALVION
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold text-white">
-            Engineering atelier building <span className="glow-gradient">patented systems</span>.
+            Engineering atelier building <AuroraText>patented systems</AuroraText>.
           </h2>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-white/70">
             We don&apos;t just write code—we architect complete ecosystems that bridge the physical and digital worlds.

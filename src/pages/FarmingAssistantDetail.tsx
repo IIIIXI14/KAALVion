@@ -2,10 +2,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, ChevronLeft, ChevronRight, ActivitySquare, Droplets, Thermometer, Leaf, HelpCircle } from "lucide-react";
+import { CheckCircle, HelpCircle } from "lucide-react";
 import TechnicalTermTooltip from "@/components/TechnicalTermTooltip";
 import ExpandableExplanation from "@/components/ExpandableExplanation";
 import Glossary from "@/components/Glossary";
+import { Iphone } from "@/registry/magicui/iphone";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import farmScreen1 from "@/assets/f1.jpeg";
+import farmScreen2 from "@/assets/f2.jpeg";
+import farmScreen3 from "@/assets/f3.jpeg";
+import farmScreen4 from "@/assets/f4.jpeg";
+import farmScreen5 from "@/assets/f5.jpeg";
+import farmScreen6 from "@/assets/f6.jpeg";
+import farmScreen7 from "@/assets/f7.jpeg";
 
 const FarmingAssistantDetail = () => {
   const navigate = useNavigate();
@@ -25,48 +34,73 @@ const FarmingAssistantDetail = () => {
       }
     }, 100);
   };
-  const farmingGallery = [
-    {
-      title: "Field Command Console",
-      subtitle: "Block A • Western zone",
-      metrics: [
-        { label: "Soil Moisture", value: "31%", trend: "optimal" },
-        { label: "pH", value: "6.8", trend: "stable" },
-        { label: "Pump Relay", value: "Line 02 • Armed", trend: "ready" },
-      ],
-      alert: "Irrigation scheduled in 12 min • Weather-safe window detected",
-    },
-    {
-      title: "Greenhouse Telemetry",
-      subtitle: "Polyhouse #7",
-      metrics: [
-        { label: "Humidity", value: "58%", trend: "low" },
-        { label: "Temperature", value: "27°C", trend: "ideal" },
-        { label: "Fan Cycle", value: "Auto • 5m cadence", trend: "synced" },
-      ],
-      alert: "AI Rule: Apply mist cycle if humidity < 55% for 10 min",
-    },
-    {
-      title: "Irrigation Mesh",
-      subtitle: "North Basin",
-      metrics: [
-        { label: "Lines Active", value: "3/5", trend: "balanced" },
-        { label: "Flow Rate", value: "18 L/min", trend: "steady" },
-        { label: "Reservoir", value: "78%", trend: "healthy" },
-      ],
-      alert: "Weather API: Rain probability 12%. Delay fertilizer dosing 2 hours.",
-    },
-  ];
-
-  const [currentFarmSlide, setCurrentFarmSlide] = useState(0);
   const [simpleMode, setSimpleMode] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentFarmSlide((prev) => (prev + 1) % farmingGallery.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [farmingGallery.length]);
+  const stickyScrollContent = [
+    {
+      title: "Dashboard Overview",
+      description: "Welcome to your smart farming command center. Get a quick overview of all connected devices, monitor online status, and view recent activity at a glance. Track your total devices and see which ones are currently active in real-time.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen1} alt="Dashboard Overview screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Device Overview",
+      description: "Monitor individual device status and environmental readings. View real-time temperature, humidity, and soil moisture data for each connected device. Check online status and see when devices were last updated.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen2} alt="Device Overview screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Sensor Monitoring",
+      description: "Track detailed sensor readings with real-time updates. View current temperature, humidity, and soil moisture levels with visual indicators. Access sensor history with progress bars showing trends over time.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen3} alt="Sensor Monitoring screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Actuator Controls",
+      description: "Directly control your farm equipment with relay switches. Turn irrigation pumps, lights, fans, and other devices on or off with a single tap. Monitor the status of all relays and manage multiple devices simultaneously.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen4} alt="Actuator Controls screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Schedule Automation",
+      description: "Set up automated schedules for your farm equipment. Configure relay controls to run automatically based on days of the week and time ranges. Enable schedule automation to reduce manual intervention and ensure consistent operations.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen5} alt="Schedule Automation screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Settings & Profile",
+      description: "Manage your account settings and profile information. Update contact details, view your user ID, and monitor system status. Configure device connections, alerts, and notification preferences all in one place.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen6} alt="Settings & Profile screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+    {
+      title: "Account Management",
+      description: "Complete control over your account settings. Edit your profile, change contact information, and manage system preferences. View connected devices, alerts, and system status from a centralized settings panel.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center">
+          <Iphone src={farmScreen7} alt="Account Management screen" className="w-full max-w-[280px] h-auto" />
+        </div>
+      ),
+    },
+  ];
 
   const coreCards = [
     {
@@ -226,109 +260,17 @@ const FarmingAssistantDetail = () => {
         </section>
 
         <section className="container mx-auto px-4 sm:px-6">
-          <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] border border-white/10 bg-gradient-to-br from-[#0f171c] via-[#0a0d12] to-[#050608] p-4 sm:p-6 md:p-8 lg:p-10 shadow-[0_35px_110px_rgba(0,0,0,0.65)]">
-            <div className="flex flex-col gap-6 pb-8 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-xs font-mono uppercase tracking-[0.55em] text-white/60">Product UI</p>
-                <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
-                  Live farm telemetry carousel
-                </h2>
-                <p className="mt-4 max-w-2xl text-white/70">
-                  Swipe through the actual dashboards farmers use—<TechnicalTermTooltip term="Edge" customExplanation="device controllers that work independently">edge relays</TechnicalTermTooltip>, soil probes, and weather advisories rendered
-                  with the same serif precision as our patent filings.
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <button
-                  aria-label="Previous panel"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition hover:bg-white/10"
-                  onClick={() =>
-                    setCurrentFarmSlide((prev) => (prev - 1 + farmingGallery.length) % farmingGallery.length)
-                  }
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  aria-label="Next panel"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition hover:bg-white/10"
-                  onClick={() => setCurrentFarmSlide((prev) => (prev + 1) % farmingGallery.length)}
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              </div>
+          <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] bg-gradient-to-r from-[#2a3470] via-[#1b1f3f] to-[#090b16] border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden relative shadow-[0_20px_60px_rgba(10,15,35,0.65)]">
+            <div className="mb-6 sm:mb-8 md:mb-10">
+              <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-2">Product UI</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">Mobile Experience</h2>
+              <p className="text-sm sm:text-base text-white/80 max-w-2xl">
+                Explore the actual Smart Farming Assistant app screens — from dashboard overview to device controls and automation scheduling —
+                presented in an interactive scroll experience. Scroll to see each screen with detailed descriptions.
+              </p>
             </div>
 
-            <div className="relative overflow-hidden">
-              <div
-                className="flex transition-transform duration-700 ease-[cubic-bezier(.4,0,.2,1)]"
-                style={{ transform: `translateX(-${currentFarmSlide * 100}%)` }}
-              >
-                {farmingGallery.map((panel) => (
-                  <div key={panel.title} className="min-w-full px-2">
-                    <div className="grid gap-4 sm:gap-6 rounded-[20px] sm:rounded-[24px] md:rounded-[28px] border border-white/10 bg-black/35 p-4 sm:p-6 md:p-8 grid-cols-1 md:grid-cols-[1.15fr,0.85fr]">
-                      <div className="space-y-4">
-                        <p className="text-xs font-mono uppercase tracking-[0.5em] text-[var(--primary)]">
-                          {panel.subtitle}
-                        </p>
-                        <h3 className="text-2xl font-semibold text-white">{panel.title}</h3>
-                        <div className="space-y-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm font-mono text-white/70">
-                          {panel.metrics.map((metric) => (
-                            <div key={metric.label} className="flex items-center justify-between">
-                              <span>{metric.label}</span>
-                              <span className="flex items-center gap-2 text-white">
-                                {metric.value}
-                                <span className="text-xs uppercase tracking-[0.3em] text-white/50">{metric.trend}</span>
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="flex items-center gap-3 rounded-2xl border border-[rgba(236,68,59,0.55)] bg-[rgba(236,68,59,0.14)] px-4 py-3 text-sm text-white/80">
-                          <ActivitySquare className="h-5 w-5 text-[var(--primary)]" />
-                          {panel.alert}
-                        </div>
-                      </div>
-                      <div className="grid gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 text-white/75">
-                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                          <span className="flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-white/60">
-                            <Droplets className="h-4 w-4 text-[var(--primary)]" />
-                            Moisture bands
-                          </span>
-                          <span className="font-mono text-lg">28% - 34%</span>
-                        </div>
-                        <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                          <span className="flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-white/60">
-                            <Thermometer className="h-4 w-4 text-[var(--primary)]" />
-                            Ambient window
-                          </span>
-                          <span className="font-mono text-lg">24°C - 30°C</span>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <span className="flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-white/60">
-                            <Leaf className="h-4 w-4 text-[var(--primary)]" />
-                            AI rule stack
-                          </span>
-                          <ul className="space-y-2 text-sm font-mono text-white/70">
-                            <li>IF humidity &lt; 55% → trigger mist cycle</li>
-                            <li>IF soil moisture &lt; 30% → line 02 auto</li>
-                            <li>IF wind &gt; 20 km/h → pause spraying</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex justify-center gap-2">
-                {farmingGallery.map((_, index) => (
-                  <button
-                    key={index}
-                    aria-label={`Go to slide ${index + 1}`}
-                    className={`h-2 rounded-full transition-all ${currentFarmSlide === index ? "w-10 bg-white" : "w-2 bg-white/40"}`}
-                    onClick={() => setCurrentFarmSlide(index)}
-                  />
-                ))}
-              </div>
-            </div>
+            <StickyScroll content={stickyScrollContent} />
           </div>
         </section>
 

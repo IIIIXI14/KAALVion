@@ -1,7 +1,9 @@
 import type { ProjectSubmission } from "@/types/project";
+import type { ProjectSubmissionData } from "@/types/submission";
 import { supabase } from "./supabase";
+import logger from "./logger";
 
-const WHATSAPP_NUMBER = "7718850412";
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || "7718850412";
 
 /**
  * Format project data into WhatsApp message
@@ -56,9 +58,12 @@ export function redirectToWhatsApp(message: string) {
 /**
  * Submit project form data to Supabase and redirect to WhatsApp
  */
-export async function submitProject(data: ProjectSubmission): Promise<{ success: boolean; error?: string }> {
+export async function submitProject(
+  data: ProjectSubmission,
+  userId?: string | null
+): Promise<{ success: boolean; error?: string }> {
   try {
-    const submissionData = {
+    const submissionData: ProjectSubmissionData = {
       service_type: data.serviceType,
       is_student: data.isStudent,
       project_name: data.projectName,
@@ -82,20 +87,36 @@ export async function submitProject(data: ProjectSubmission): Promise<{ success:
       preferred_timeline: data.preferredTimeline || null,
       submitted_at: new Date().toISOString(),
       status: 'pending',
+      user_id: userId || null,
     };
 
     // Save to Supabase if configured
     if (supabase) {
-      const { error } = await supabase
+      logger.log("Submitting project to Supabase:", { 
+        projectName: submissionData.project_name, 
+        userId: userId || "none",
+        email: submissionData.email 
+      });
+      
+      const { data, error } = await supabase
         .from('project_submissions')
-        .insert([submissionData]);
+        .insert([submissionData])
+        .select();
 
       if (error) {
-        console.error("Supabase error:", error);
+        logger.error("Supabase insert error:", error);
+        logger.error("Error details:", {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
         // Continue to WhatsApp redirect even if Supabase fails
+      } else {
+        logger.log("Project successfully saved to Supabase:", data);
       }
     } else {
-      console.warn("Supabase not configured. Skipping database save.");
+      logger.warn("Supabase not configured. Skipping database save.");
     }
 
     // Format and redirect to WhatsApp
@@ -104,7 +125,7 @@ export async function submitProject(data: ProjectSubmission): Promise<{ success:
 
     return { success: true };
   } catch (error) {
-    console.error("Submission error:", error);
+    logger.error("Submission error:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Failed to submit project",

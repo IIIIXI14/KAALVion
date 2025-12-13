@@ -11,6 +11,11 @@ import { submitProject } from "@/lib/submitProject";
 import { useState, useMemo } from "react";
 import { Loader2, GraduationCap } from "lucide-react";
 import { getProjectTypesForService, getProjectTypeSchema } from "@/lib/serviceProjectTypes";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import { Confetti } from "@/components/ui/confetti";
+import { trackFormSubmission } from "@/lib/analytics";
+import { isRateLimited, recordSubmission, getTimeUntilReset } from "@/lib/rateLimiter";
 
 interface StudentProjectFormProps {
   serviceType: string;
@@ -36,6 +41,9 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
   type StudentFormData = z.infer<typeof studentFormSchema>;
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const { user } = useUser();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -58,36 +66,53 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
   const onSubmit = async (data: StudentFormData) => {
     setIsSubmitting(true);
     try {
-      const result = await submitProject({
-        serviceType,
-        isStudent: true,
-        projectName: data.projectName,
-        studentName: data.studentName,
-        email: data.email,
-        company: data.university || "Student",
-        phone: "", // Not required for students
-        description: data.description,
-        keyFeatures: data.keyFeatures,
-        projectType: data.projectType,
-        deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // Default 30 days
-        budget: data.budget,
-        urgency: "medium",
-        teamSize: 1,
-        university: data.university,
-        portfolioFocus: data.portfolioFocus,
-        preferredTimeline: data.preferredTimeline,
-      });
+      const result = await submitProject(
+        {
+          serviceType,
+          isStudent: true,
+          projectName: data.projectName,
+          studentName: data.studentName,
+          email: data.email,
+          company: data.university || "Student",
+          phone: "", // Not required for students
+          description: data.description,
+          keyFeatures: data.keyFeatures,
+          projectType: data.projectType,
+          deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // Default 30 days
+          budget: data.budget,
+          urgency: "medium",
+          teamSize: 1,
+          university: data.university,
+          portfolioFocus: data.portfolioFocus,
+          preferredTimeline: data.preferredTimeline,
+        },
+        user?.id || null
+      );
 
       if (result.success) {
+        // Record submission for rate limiting
+        recordSubmission("student_project_form");
+        
+        // Track form submission
+        trackFormSubmission("student_project_form", true);
+        
+        // Trigger confetti animation
+        setShowConfetti(true);
+        
         toast({
-          title: "Project Submitted!",
-          description: "Redirecting to WhatsApp... Your project details have been saved.",
+          title: "Project Submitted Successfully!",
+          description: "Your project has been saved. Redirecting to project status...",
         });
-        // Small delay to show toast before closing modal
+        
+        // Close modal first
+        onSuccess();
+        
+        // Navigate to projects page after confetti animation
         setTimeout(() => {
-          onSuccess();
-        }, 1500);
+          navigate("/projects");
+        }, 3000);
       } else {
+        trackFormSubmission("student_project_form", false);
         toast({
           title: "Submission Failed",
           description: result.error || "Please try again later.",
@@ -106,7 +131,9 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
   };
 
   return (
-    <div className="space-y-6">
+    <>
+      <Confetti trigger={showConfetti} duration={3000} />
+      <div className="space-y-6">
       {/* Student Discount Badge */}
       <div className="flex items-center gap-3 p-4 rounded-xl bg-[var(--primary)]/10 border border-[var(--primary)]/30">
         <GraduationCap className="h-5 w-5 text-[var(--primary)]" />
@@ -208,7 +235,7 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
             <label className="block text-sm font-semibold mb-2 text-white/90">
               Project Type <span className="text-[var(--primary)]">*</span>
             </label>
-            <Select onValueChange={(value) => setValue("projectType", value as any, { shouldValidate: true })}>
+            <Select onValueChange={(value) => setValue("projectType", value as StudentFormData["projectType"], { shouldValidate: true })}>
               <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl focus:border-[var(--primary)]">
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
@@ -229,7 +256,7 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
             <label className="block text-sm font-semibold mb-2 text-white/90">
               Preferred Timeline <span className="text-[var(--primary)]">*</span>
             </label>
-            <Select onValueChange={(value) => setValue("preferredTimeline", value as any, { shouldValidate: true })}>
+            <Select onValueChange={(value) => setValue("preferredTimeline", value as StudentFormData["preferredTimeline"], { shouldValidate: true })}>
               <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl focus:border-[var(--primary)]">
                 <SelectValue placeholder="Select timeline" />
               </SelectTrigger>
@@ -249,7 +276,7 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
           <label className="block text-sm font-semibold mb-2 text-white/90">
             Budget Range <span className="text-[var(--primary)]">*</span>
           </label>
-          <Select onValueChange={(value) => setValue("budget", value as any, { shouldValidate: true })}>
+          <Select onValueChange={(value) => setValue("budget", value as StudentFormData["budget"], { shouldValidate: true })}>
             <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl focus:border-[var(--primary)]">
               <SelectValue placeholder="Select budget" />
             </SelectTrigger>
@@ -298,6 +325,7 @@ const StudentProjectForm = ({ serviceType, onSuccess }: StudentProjectFormProps)
         </div>
       </form>
     </div>
+    </>
   );
 };
 

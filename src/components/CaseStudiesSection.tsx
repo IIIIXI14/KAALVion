@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { ArrowRight, TrendingUp, Clock, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { caseStudies, categories, type CaseStudyCategory } from "@/data/caseStudies";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const iconMap = {
   TrendingUp,
@@ -30,7 +31,7 @@ const CaseStudiesSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Success <span className="text-gradient">Stories</span>
+            Success <AuroraText>Stories</AuroraText>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real results from real projects
@@ -105,7 +106,7 @@ const CaseStudiesSection = () => {
                   return (
                     <div key={metric.label} className="text-center">
                       <MetricIcon className="w-5 h-5 text-primary mx-auto mb-2" />
-                      <div className="text-xl font-bold text-gradient">{metric.value}</div>
+                      <div className="text-xl font-bold"><AuroraText>{metric.value}</AuroraText></div>
                       <div className="text-xs text-muted-foreground">{metric.label}</div>
                     </div>
                   );

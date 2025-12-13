@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Search, Lightbulb, Code, Rocket } from "lucide-react";
+import { AuroraText } from "@/registry/magicui/aurora-text";
 
 const steps = [
   {
@@ -40,7 +41,7 @@ const ProcessSection = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-            The <span className="glow-gradient">Process</span>
+            The <AuroraText>Process</AuroraText>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             A proven methodology to bring your vision to life

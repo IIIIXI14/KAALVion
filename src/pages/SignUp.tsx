@@ -2,7 +2,7 @@ import { SignUp } from "@clerk/clerk-react";
 import { dark } from "@clerk/themes";
 import { motion } from "framer-motion";
 import logoIcon from "@/assets/KaalVion_DarkLogo_img.png";
-import logoName from "@/assets/KaalVion_DarkLogo_name .png";
+import logoName from "@/assets/KaalVion_DarkLogo_name.png";
 
 const SignUpPage = () => {
   return (
