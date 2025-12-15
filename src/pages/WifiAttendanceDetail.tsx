@@ -55,7 +55,7 @@ const WifiAttendanceDetail = () => {
   const stickyScrollContent = [
     {
       title: "Login & Onboarding",
-      description: "Seamless authentication experience with secure login and intuitive onboarding flow. Users can quickly register their devices and link their biometric credentials for dual-layer verification.",
+      description: "Clean welcome and login flow with quick device setup so users can start marking attendance in minutes.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen1} alt="Login & Onboarding screen" className="w-full max-w-[280px] h-auto" />
@@ -64,7 +64,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Real-time Attendance Status",
-      description: "Live attendance tracking with instant updates. View your current status, check-in/check-out times, and see real-time notifications as you enter or leave the WiFi zone.",
+      description: "Live status showing today’s check-ins, current session time, and quick actions for on-time presence.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen2} alt="Real-time Attendance Status screen" className="w-full max-w-[280px] h-auto" />
@@ -73,7 +73,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Account & Device Profile",
-      description: "Manage your account settings and registered devices. Link multiple devices, update biometric credentials, and configure your attendance preferences all in one place.",
+      description: "User profile with linked devices and verification badges so admins know which device is authorized.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen3} alt="Account & Device Profile screen" className="w-full max-w-[280px] h-auto" />
@@ -82,7 +82,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Manual Attendance Control",
-      description: "Admin controls for manual attendance override when needed. Handle exceptions, mark attendance manually, and manage special cases with full audit trail.",
+      description: "Manual override for exceptions—admins can mark present/absent with reason codes and audit notes.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen4} alt="Manual Attendance Control screen" className="w-full max-w-[280px] h-auto" />
@@ -91,7 +91,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Biometric Verification Dashboard",
-      description: "Comprehensive dashboard for biometric verification status. Track verification attempts, view success rates, and monitor security metrics in real-time.",
+      description: "Verification dashboard summarizing biometric checks, attempts, and validation outcomes for each user.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen5} alt="Biometric Verification Dashboard screen" className="w-full max-w-[280px] h-auto" />
@@ -100,7 +100,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "WiFi & Timeframe Configuration",
-      description: "Configure authorized WiFi networks and set attendance timeframes. Define work hours, break periods, and location-specific rules for accurate attendance tracking.",
+      description: "Configure allowed WiFi zones and working windows to ensure attendance is only captured in valid ranges.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen6} alt="WiFi & Timeframe Configuration screen" className="w-full max-w-[280px] h-auto" />
@@ -109,7 +109,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Attendance Reports Overview",
-      description: "Generate comprehensive attendance reports with detailed analytics. Export data, view trends, and analyze patterns to optimize workforce management.",
+      description: "Reports hub with summaries, exports, and visual attendance trends for teams and locations.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen7} alt="Attendance Reports Overview screen" className="w-full max-w-[280px] h-auto" />
@@ -118,7 +118,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Detailed Timeframe Analytics",
-      description: "Deep dive into timeframe-specific analytics. Analyze attendance patterns by time periods, identify trends, and make data-driven decisions for your organization.",
+      description: "Time-sliced analytics showing arrivals, late marks, and session lengths across days and shifts.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen8} alt="Detailed Timeframe Analytics screen" className="w-full max-w-[280px] h-auto" />
@@ -127,7 +127,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Admin/Employee Context",
-      description: "Role-based interface for both administrators and employees. Admins get full control panels while employees see personalized dashboards with relevant information.",
+      description: "Role-based view highlighting what admins and employees can see and do in their respective dashboards.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen9} alt="Admin/Employee Context screen" className="w-full max-w-[280px] h-auto" />
@@ -136,7 +136,7 @@ const WifiAttendanceDetail = () => {
     },
     {
       title: "Advanced Interface Features",
-      description: "Additional interface screens showcasing advanced features, settings, and customization options. Explore the full range of capabilities available in the platform.",
+      description: "Additional interface panels for advanced settings, filters, and fine-grained attendance controls.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={screen10} alt="Advanced Interface Features screen" className="w-full max-w-[280px] h-auto" />

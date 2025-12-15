@@ -37,34 +37,18 @@ const App = () => (
       <Sonner />
       <ClerkSupabaseSync />
       <ErrorBoundary>
-      <BrowserRouter>
+        <BrowserRouter>
           <RouteTracker />
           <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<Index />} />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/sign-in" element={<SignInPage />} />
+              <Route path="/sign-up" element={<SignUpPage />} />
               <Route
-                path="/sign-in"
+                path="/dashboard"
                 element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <SignInPage />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/sign-up"
-                element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <SignUpPage />
-                  </Suspense>
-                }
-              />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                    <Suspense fallback={<LoadingFallback />}>
-                <Dashboard />
-                    </Suspense>
+                  <ProtectedRoute>
+                    <Dashboard />
                   </ProtectedRoute>
                 }
               />
@@ -72,48 +56,18 @@ const App = () => (
                 path="/projects"
                 element={
                   <ProtectedRoute>
-                    <Suspense fallback={<LoadingFallback />}>
-                      <ProjectStatus />
-                    </Suspense>
-              </ProtectedRoute>
-            }
-          />
-              <Route
-                path="/case-studies/:id"
-                element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <CaseStudyDetail />
-                  </Suspense>
+                    <ProjectStatus />
+                  </ProtectedRoute>
                 }
               />
-              <Route
-                path="/solutions/wifi-attendance"
-                element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <WifiAttendanceDetail />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/solutions/smart-farming"
-                element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <FarmingAssistantDetail />
-                  </Suspense>
-                }
-              />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route
-                path="*"
-                element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <NotFound />
-                  </Suspense>
-                }
-              />
-        </Routes>
+              <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+              <Route path="/solutions/wifi-attendance" element={<WifiAttendanceDetail />} />
+              <Route path="/solutions/smart-farming" element={<FarmingAssistantDetail />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </Suspense>
-      </BrowserRouter>
+        </BrowserRouter>
       </ErrorBoundary>
     </TooltipProvider>
   </QueryClientProvider>

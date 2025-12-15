@@ -25,7 +25,7 @@ const MobileMenu = ({ isOpen, onClose, scrollToSection }: MobileMenuProps) => {
     if (isRoute) {
       navigate(id);
     } else {
-      scrollToSection(id);
+    scrollToSection(id);
     }
     onClose();
   };

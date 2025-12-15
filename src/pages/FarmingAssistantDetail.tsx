@@ -39,7 +39,7 @@ const FarmingAssistantDetail = () => {
   const stickyScrollContent = [
     {
       title: "Dashboard Overview",
-      description: "Welcome to your smart farming command center. Get a quick overview of all connected devices, monitor online status, and view recent activity at a glance. Track your total devices and see which ones are currently active in real-time.",
+      description: "Command center with live device count, online status, and a quick summary of recent farm events.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen1} alt="Dashboard Overview screen" className="w-full max-w-[280px] h-auto" />
@@ -48,7 +48,7 @@ const FarmingAssistantDetail = () => {
     },
     {
       title: "Device Overview",
-      description: "Monitor individual device status and environmental readings. View real-time temperature, humidity, and soil moisture data for each connected device. Check online status and see when devices were last updated.",
+      description: "Per-device cards showing connectivity, last update time, and key environmental readings at a glance.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen2} alt="Device Overview screen" className="w-full max-w-[280px] h-auto" />
@@ -57,7 +57,7 @@ const FarmingAssistantDetail = () => {
     },
     {
       title: "Sensor Monitoring",
-      description: "Track detailed sensor readings with real-time updates. View current temperature, humidity, and soil moisture levels with visual indicators. Access sensor history with progress bars showing trends over time.",
+      description: "Live graphs for temperature, humidity, and soil moisture with trend indicators for each plot.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen3} alt="Sensor Monitoring screen" className="w-full max-w-[280px] h-auto" />
@@ -66,7 +66,7 @@ const FarmingAssistantDetail = () => {
     },
     {
       title: "Actuator Controls",
-      description: "Directly control your farm equipment with relay switches. Turn irrigation pumps, lights, fans, and other devices on or off with a single tap. Monitor the status of all relays and manage multiple devices simultaneously.",
+      description: "Relay controls to toggle pumps, lights, and fans with instant feedback on each device state.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen4} alt="Actuator Controls screen" className="w-full max-w-[280px] h-auto" />
@@ -75,7 +75,7 @@ const FarmingAssistantDetail = () => {
     },
     {
       title: "Schedule Automation",
-      description: "Set up automated schedules for your farm equipment. Configure relay controls to run automatically based on days of the week and time ranges. Enable schedule automation to reduce manual intervention and ensure consistent operations.",
+      description: "Automation rules by day/time so irrigation and equipment run on schedule without manual effort.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen5} alt="Schedule Automation screen" className="w-full max-w-[280px] h-auto" />
@@ -84,7 +84,7 @@ const FarmingAssistantDetail = () => {
     },
     {
       title: "Settings & Profile",
-      description: "Manage your account settings and profile information. Update contact details, view your user ID, and monitor system status. Configure device connections, alerts, and notification preferences all in one place.",
+      description: "Profile and system settings in one place—contact details, alerts, and device preferences.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen6} alt="Settings & Profile screen" className="w-full max-w-[280px] h-auto" />
@@ -93,7 +93,7 @@ const FarmingAssistantDetail = () => {
     },
     {
       title: "Account Management",
-      description: "Complete control over your account settings. Edit your profile, change contact information, and manage system preferences. View connected devices, alerts, and system status from a centralized settings panel.",
+      description: "Account controls for admins: manage users, devices, and permissions from a single panel.",
       content: (
         <div className="flex h-full w-full items-center justify-center">
           <Iphone src={farmScreen7} alt="Account Management screen" className="w-full max-w-[280px] h-auto" />

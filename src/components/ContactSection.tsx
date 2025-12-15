@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
 import { redirectToWhatsApp } from "@/lib/submitProject";
 import logger from "@/lib/logger";
+import { isRateLimited, getTimeUntilReset, recordSubmission } from "@/lib/rateLimiter";
 import type { ContactSubmissionData } from "@/types/submission";
 import { trackFormSubmission } from "@/lib/analytics";
 import contactIllustration from "@/assets/contact-illustration.jpg";
@@ -24,7 +25,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "",
+    phone: "",
     message: "",
   });
 
@@ -44,15 +45,25 @@ const ContactSection = () => {
     
     try {
       // Format WhatsApp message
-      const whatsappMessage = `*New Contact Form Inquiry*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Project Type:* ${formData.projectType || 'Not specified'}\n\n*Message:*\n${formData.message}`;
+      const whatsappMessage = [
+        "*New Contact Form Inquiry*",
+        "",
+        `*Name:* ${formData.name}`,
+        `*Email:* ${formData.email}`,
+        `*Phone:* ${formData.phone || "Not provided"}`,
+        "",
+        "*Message:*",
+        formData.message || "No message provided",
+      ].join("\n");
 
       // Save to Supabase if configured
       if (supabase) {
         const submissionData: ContactSubmissionData = {
           name: formData.name,
           email: formData.email,
-          project_type: formData.projectType || null,
+          project_type: null,
           message: formData.message,
+          phone: formData.phone || null,
           submitted_at: new Date().toISOString(),
           status: 'pending',
           user_id: user?.id || null,
@@ -81,11 +92,11 @@ const ContactSection = () => {
 
       toast({
         title: "Message Sent!",
-        description: "Redirecting to WhatsApp... Your message has been saved.",
+        description: "Redirecting to WhatsApp... We'll get back to you shortly.",
       });
 
       // Reset form
-      setFormData({ name: "", email: "", projectType: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       logger.error("Submission error:", error);
       trackFormSubmission("contact_form", false);
@@ -143,21 +154,14 @@ const ContactSection = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2">Project Type</label>
-                  <Select
-                    value={formData.projectType}
-                    onValueChange={(value) => setFormData({ ...formData, projectType: value })}
-                  >
-                    <SelectTrigger className="rounded-xl min-h-[44px] border border-white/10 bg-transparent focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)]/80 transition-all">
-                      <SelectValue placeholder="Select project type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="website">Website</SelectItem>
-                      <SelectItem value="mobile">Mobile App</SelectItem>
-                      <SelectItem value="licensing">Patent Licensing</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <label className="block text-sm font-semibold mb-2">Phone (optional)</label>
+                  <Input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+91 7718850412"
+                    className="rounded-xl min-h-[44px] border border-white/10 bg-transparent focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)]/80 transition-all"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold mb-2">Message</label>
@@ -194,7 +198,7 @@ const ContactSection = () => {
                 </a>
                 <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground min-h-[44px]">
                   <MapPin className="w-5 h-5 flex-shrink-0" />
-                  <span>Mumbai, Maharashtra, IndiaS</span>
+                  <span>Mumbai, Maharashtra, India</span>
                 </div>
               </div>
             </div>

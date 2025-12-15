@@ -15,7 +15,7 @@ import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { Confetti } from "@/components/ui/confetti";
 import { trackFormSubmission } from "@/lib/analytics";
-import { isRateLimited, recordSubmission, getTimeUntilReset } from "@/lib/rateLimiter";
+import { isRateLimited, getTimeUntilReset, recordSubmission } from "@/lib/rateLimiter";
 
 interface StudentProjectFormProps {
   serviceType: string;

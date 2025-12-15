@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { useScroll } from "framer-motion";
-import { motion } from "framer-motion";
+import { useScroll, useInView, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const StickyScroll = ({
@@ -17,6 +16,7 @@ export const StickyScroll = ({
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { amount: 0.6, margin: "0px 0px -80px 0px" });
   const { scrollYProgress } = useScroll({
     container: ref,
     offset: ["start start", "end start"],
@@ -24,6 +24,7 @@ export const StickyScroll = ({
   const cardLength = content.length;
 
   useEffect(() => {
+    if (!isInView) return;
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       const cardsBreakpoints = content.map((_, index) => index / cardLength);
       const closestBreakpointIndex = cardsBreakpoints.reduce(
@@ -40,7 +41,7 @@ export const StickyScroll = ({
     });
 
     return () => unsubscribe();
-  }, [scrollYProgress, cardLength]);
+  }, [scrollYProgress, cardLength, content, isInView]);
 
   const backgroundColors = [
     "#070812", // matches website background
