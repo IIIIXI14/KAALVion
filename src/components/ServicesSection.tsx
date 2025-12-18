@@ -79,7 +79,7 @@ const ServicesSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(99,99,99,0.1),transparent_50%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6" ref={ref}>
-        <motion.div
+        <motion.header
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -87,12 +87,18 @@ const ServicesSection = () => {
         >
           <p className="mb-3 sm:mb-4 text-[0.65rem] sm:text-xs font-mono uppercase tracking-[0.45em] sm:tracking-[0.55em] text-white/60">KAALVION STACK</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white">
-            Full-spectrum engineering, orchestrated like an <AuroraText>industrial console</AuroraText>.
+            Website, app &amp; cross‑platform{" "}
+            <AuroraText>development services</AuroraText>.
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-white/70">
-            Every capability plugs into our <TechnicalTermTooltip term="Telemetry">telemetry layer</TechnicalTermTooltip>—<TechnicalTermTooltip term="IoT">IoT</TechnicalTermTooltip>, cloud, and interface teams operating as a single system.
+            KAALVION delivers{" "}
+            <strong className="font-semibold text-white">
+              website development, web app development, cross‑platform React Native &amp; Flutter apps
+            </strong>{" "}
+            plus IoT systems, all wired into a single{" "}
+            <TechnicalTermTooltip term="Telemetry">telemetry</TechnicalTermTooltip> layer so your product, cloud, and interface teams operate as one system.
           </p>
-        </motion.div>
+        </motion.header>
 
         <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (

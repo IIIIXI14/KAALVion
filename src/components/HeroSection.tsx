@@ -112,22 +112,28 @@ const HeroSection = () => {
               SYSTEM BLUEPRINTS • NOT WEBSITES
           </motion.div>
 
-            <motion.div
+            <motion.header
               className="space-y-4 sm:space-y-6"
               initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.7 }}
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-semibold leading-tight text-white">
-                We engineer patented systems{" "}
-                <AuroraText>others can&apos;t replicate.</AuroraText>
+                KAALVION builds{" "}
+                <AuroraText>websites, apps & WiFi attendance systems</AuroraText>
               </h1>
               <p className="max-w-2xl text-base sm:text-lg text-white/75">
-                KAALVION is an engineering atelier building <TechnicalTermTooltip term="WiFi mesh">WiFi attendance networks</TechnicalTermTooltip>, <TechnicalTermTooltip term="IoT">smart farming meshes</TechnicalTermTooltip>, and the
-                interfaces that choreograph them. Every product is <TechnicalTermTooltip term="Edge">edge hardware</TechnicalTermTooltip>, cloud infrastructure, and human UI
-                stitched together with patent-backed precision.
+                We are a global engineering studio for{" "}
+                <strong className="font-semibold text-white">
+                  website development, web apps, and cross‑platform mobile apps with React Native &amp; Flutter
+                </strong>
+                . We also build{" "}
+                <strong className="font-semibold text-white">
+                  WiFi Attendance — the fastest attendance app
+                </strong>{" "}
+                and <TechnicalTermTooltip term="IoT">smart farming meshes</TechnicalTermTooltip> that connect edge hardware, cloud infrastructure, and human‑first interfaces.
               </p>
-            </motion.div>
+            </motion.header>
 
           <motion.div
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"

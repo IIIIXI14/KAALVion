@@ -288,20 +288,27 @@ const WifiAttendanceDetail = () => {
         <section className="container mx-auto px-4 sm:px-6">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex-1">
-              <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">Patent #WIFI-2024-001</p>
+              <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-3 sm:mb-4">
+                Patent #WIFI-2024-001
+              </p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black max-w-3xl mb-3 sm:mb-4">
-                WiFi-Based Attendance Platform
+                WiFi Attendance – the fastest attendance app by KAALVION
               </h1>
               <p className="text-base sm:text-lg text-white/85 max-w-3xl mb-4">
                 {simpleMode ? (
                   <>
-                    An automatic attendance system that recognizes you when you connect to office WiFi. Like a smart door that knows you&apos;re there—no scanning, no cards, no manual check-in needed. Your device&apos;s unique ID plus your fingerprint/face confirms it&apos;s really you.
+                    An automatic WiFi attendance system that recognizes you when you connect to office WiFi. Like a smart door
+                    that knows you&apos;re there—no scanning, no cards, no manual check-in needed. Your device&apos;s unique ID plus
+                    your fingerprint/face confirms it&apos;s really you, making this one of the fastest attendance apps you can
+                    deploy.
                   </>
                 ) : (
                   <>
-                    A fully automated attendance system that authenticates individuals using <TechnicalTermTooltip term="WiFi mesh">WiFi proximity</TechnicalTermTooltip> + registered devices,
-                    eliminating hardware scanners, QR codes, and manual check-ins. Designed for organizations that demand accuracy,
-                    automation, and zero-interruption workflows.
+                    A fully automated WiFi attendance platform that authenticates individuals using{" "}
+                    <TechnicalTermTooltip term="WiFi mesh">WiFi proximity</TechnicalTermTooltip> + registered devices, eliminating
+                    hardware scanners, QR codes, and manual check-ins. Designed for organizations that demand accuracy,
+                    automation, and zero-interruption workflows, it positions WiFi Attendance as the best attendance app for
+                    modern offices, campuses, and factories.
                   </>
                 )}
               </p>
@@ -349,13 +356,14 @@ const WifiAttendanceDetail = () => {
         </section>
 
         <section className="container mx-auto px-4 sm:px-6">
-          <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] bg-gradient-to-r from-[#2a3470] via-[#1b1f3f] to-[#090b16] border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden relative shadow-[0_20px_60px_rgba(10,15,35,0.65)]">
+            <div className="rounded-[24px] sm:rounded-[28px] md:rounded-[32px] bg-gradient-to-r from-[#2a3470] via-[#1b1f3f] to-[#090b16] border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden relative shadow-[0_20px_60px_rgba(10,15,35,0.65)]">
             <div className="mb-6 sm:mb-8 md:mb-10">
                 <p className="uppercase tracking-[0.35em] sm:tracking-[0.4em] text-[0.65rem] sm:text-xs text-white/60 mb-2">Product UI</p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">Mobile Experience</h2>
-                <p className="text-sm sm:text-base text-white/80 max-w-2xl">
-                  Explore the actual KAALVION attendance app screens — from login to biometric verification dashboards —
-                presented in an interactive scroll experience. Scroll to see each screen with detailed descriptions.
+              <p className="text-sm sm:text-base text-white/80 max-w-2xl">
+                Explore the actual KAALVION WiFi Attendance app screens — from login to biometric verification dashboards —
+                presented in an interactive scroll experience. Scroll to see how the fastest attendance app behaves in real
+                usage.
               </p>
             </div>
 
@@ -363,7 +371,137 @@ const WifiAttendanceDetail = () => {
           </div>
         </section>
 
-        {/* ...rest of your component remains unchanged... */}
+        <section className="container mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12 md:space-y-14">
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+              Why WiFi Attendance is the fastest attendance app.
+            </h2>
+            <p className="text-sm sm:text-base text-white/80 max-w-3xl">
+              Traditional attendance apps depend on QR codes, GPS, or shared tablets. They&apos;re easy to cheat and slow to
+              use. WiFi Attendance verifies a person&apos;s presence the moment their device connects to your trusted network, so
+              check-ins happen in the background while people start work.
+            </p>
+            <ul className="mt-4 grid gap-3 text-sm text-white/75 md:grid-cols-2">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 mt-0.5 text-[var(--primary)]" />
+                <span>One-tap check-in over secure WiFi, no queues or scanning.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 mt-0.5 text-[var(--primary)]" />
+                <span>Device and network fingerprinting to prevent fake locations.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 mt-0.5 text-[var(--primary)]" />
+                <span>Real-time dashboards for HR and managers across locations.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 mt-0.5 text-[var(--primary)]" />
+                <span>Works across offices, classrooms, and large campuses.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+              The best attendance app for offices, campuses, and field teams.
+            </h2>
+            <p className="text-sm sm:text-base text-white/80 max-w-3xl">
+              Whether you&apos;re tracking employees in a single office, students across multiple classrooms, or technicians
+              moving between client sites, WiFi Attendance gives you accurate, tamper-proof data you can trust.
+            </p>
+            <div className="mt-4 grid gap-4 text-sm text-white/75 md:grid-cols-3">
+              <div>
+                <h3 className="font-semibold text-white">Corporate offices</h3>
+                <p className="mt-1">
+                  Fast, contactless attendance for hybrid teams with flexible timing rules and late-coming alerts.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-white">Colleges &amp; schools</h3>
+                <p className="mt-1">
+                  Automated attendance across classrooms and labs, with exports for reports and compliance.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-white">Factories &amp; sites</h3>
+                <p className="mt-1">
+                  Track shifts and overtime in real time, even across multiple plants or locations, from a single dashboard.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 sm:mb-4">
+              How WiFi Attendance works.
+            </h2>
+            <ol className="mt-3 space-y-3 text-sm sm:text-base text-white/80 max-w-3xl list-decimal list-inside">
+              <li>
+                Employees or students install the WiFi Attendance app on their phones and sign in with secure credentials.
+              </li>
+              <li>
+                When they enter a location covered by your trusted WiFi networks, the app detects presence and records attendance
+                in a few seconds.
+              </li>
+              <li>
+                Our backend applies your rules — grace periods, shift timings, breaks — and updates real-time dashboards for HR
+                or faculty.
+              </li>
+              <li>
+                Admins can export reports, integrate with payroll or LMS systems, and audit logs for compliance from a single
+                control panel.
+              </li>
+            </ol>
+          </div>
+
+          <div className="space-y-4 sm:space-y-5">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+              Ready to try the fastest attendance app?
+            </h2>
+            <p className="text-sm sm:text-base text-white/80 max-w-3xl">
+              Book a demo with KAALVION and see how WiFi Attendance can replace slow, error-prone attendance processes with a
+              best-in-class WiFi-based system.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={scrollToContact}
+                className="px-5 py-2.5 rounded-full bg-[var(--primary)] text-sm font-semibold text-white shadow-[0_0_30px_rgba(236,68,59,0.6)] hover:bg-[var(--primary)]/90 transition min-h-[44px]"
+              >
+                Book a demo
+              </button>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="px-5 py-2.5 rounded-full border border-white/30 text-sm font-semibold text-white/80 hover:bg-white/5 transition min-h-[44px]"
+              >
+                Back to overview
+              </button>
+            </div>
+
+            <div className="mt-4 space-y-4 text-sm sm:text-base text-white/80 max-w-3xl">
+              <div>
+                <p className="font-semibold text-white">Is WiFi Attendance better than QR or RFID attendance?</p>
+                <p className="mt-1">
+                  Yes. Because WiFi Attendance verifies the device on your secure network, people don&apos;t have to stand in
+                  line to scan a code or touch shared hardware. It&apos;s faster, more hygienic, and much harder to fake.
+                </p>
+              </div>
+              <div>
+                <p className="font-semibold text-white">What makes this the fastest attendance app?</p>
+                <p className="mt-1">
+                  Check-in happens automatically when the device connects to your trusted WiFi, so most people are marked present
+                  within a few seconds of arriving. There is no manual scanning step to slow everyone down.
+                </p>
+              </div>
+              <div>
+                <p className="font-semibold text-white">Can WiFi Attendance work across multiple locations?</p>
+                <p className="mt-1">
+                  Yes. You can register multiple offices, buildings, or classrooms and manage all of them from a single KAALVION
+                  dashboard with unified reports.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <div className="relative z-10">
